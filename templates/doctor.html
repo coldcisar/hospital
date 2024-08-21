@@ -1,0 +1,60 @@
+{% extends 'index_master.html' %}
+{% block content %}
+
+<div class="right_col" role="main">
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-user-md"></i> Doctores</h1>
+                <p>Lista de doctores y sus pacientes asociados</p>
+            </div>
+        </div>
+
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered" id="tb_doctores">
+                        <thead>
+                            <tr>
+                                <th>Nombre Doctor</th>
+                                <th>RUT</th>
+                                <th>Especialidad</th>
+                                <th>Teléfono</th>
+                                <th>Pacientes Asociados</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doctor in doctores %}
+                                <tr>
+                                    <td>{{ doctor.nombre_doctor }}</td>
+                                    <td>{{ doctor.rut_doctor }}</td>
+                                    <td>{{ doctor.especialidad_doctor }}</td>
+                                    <td>{{ doctor.fono_doctor }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for paciente in doctor.pacientes.all %}
+                                                <li>{{ paciente.nombre_paciente }} ({{ paciente.rut_paciente }})</li>
+                                            {% empty %}
+                                                <li>No hay pacientes asociados.</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <button class='btn btn-sm btn-primary'><i class='fa-solid fa-pencil'></i></button>
+                                        <button class='btn btn-sm btn-danger'><i class='fa-solid fa-trash-can'></i></button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <button class='btn btn-sm btn-primary' onclick="window.location.href='/agregar_doctor/'">Agregar Doctor</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}
+
+
