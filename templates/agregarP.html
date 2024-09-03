@@ -11,6 +11,7 @@
                     La identificación precisa del paciente es un pilar fundamental en la prestación de atención médica...
                 </p>
 
+                <!-- Formulario del Paciente -->
                 <form id="pacienteForm" method="post" action="{% url 'agregarP' %}">
                     {% csrf_token %}
                     
@@ -46,6 +47,7 @@
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="region_zona_nacimiento">Región o Zona de Nacimiento:</label>
                         <input type="text" id="region_zona_nacimiento" name="region_zona_nacimiento" class="form-control" maxlength="100">
@@ -71,7 +73,6 @@
                             <option value="Otra">Otra</option>
                         </select>
                     </div>
-
 
                     <div class="form-group">
                         <label class="required-field" for="idioma_hablado">Idioma que Habla:</label>
@@ -107,6 +108,7 @@
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label class="required-field" for="numero_documento_identidad">Número de Documento de Identidad:</label>
                         <input type="text" id="numero_documento_identidad" name="numero_documento_identidad" class="form-control" maxlength="25" required>
@@ -114,39 +116,190 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                        <button type="button" id="" class="btn btn-primary btn-lg">Siguiente</button>
                     </div>
                 </form>
 
+                <!-- Formulario del Responsable -->
+                <div id="form-responsable" style="display:none;">
+                    <h2>Persona Responsable Médico Legal del Paciente, Acompañante</h2>
+                    <p>
+                        La figura del acompañante ya sea un familiar o no, adquiere una relevancia especial en el contexto de patologías complejas y/o múltiples...
+                    </p>
+                    
+                    <form id="responsableForm" method="post" action="{% url 'agregarP' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="es-paciente">* ¿Es usted el Paciente?</label>
+                            <select id="es-paciente" name="es-paciente" class="form-control" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+        
+                        <div id="extra-fields" class="hidden">
+                            <div class="form-group">
+                                <label for="relacion">¿Relación con el paciente?</label>
+                                <select id="relacion" name="relacion" class="form-control">
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="Padre/Madre">Padre/Madre</option>
+                                    <option value="Hijo/Hija">Hijo/Hija</option>
+                                    <option value="Esposo/Esposa">Esposo/Esposa o Pareja</option>
+                                    <option value="Hermano/Hermana">Hermano/Hermana</option>
+                                    <option value="Abuelo/Abuela">Abuelo/Abuela</option>
+                                    <option value="Nieto/Nieta">Nieto/Nieta</option>
+                                    <option value="Tío/Tía">Tío/Tía</option>
+                                    <option value="Primo/Prima">Primo/Prima</option>
+                                    <option value="Amigo/Amiga">Amigo/Amiga</option>
+                                    <option value="Vecino/Vecina">Vecino/Vecina</option>
+                                    <option value="Cuidador">Cuidador/Cuidadora profesional</option>
+                                    <option value="Personal de emergencia">Personal de emergencia</option>
+                                    <option value="Conviviente">Conviviente en misma residencia, no relacionados como pareja</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="required-field" for="nombre_completo_responsable">Nombre Completo:</label>
+                                <input type="text" id="nombre_completo_responsable" name="nombre_completo_responsable" class="form-control" maxlength="35" required>
+                                <span id="nombre_completo_responsable_error" class="text-danger"></span>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="nombre_social_responsable">Nombre Social:</label>
+                                <input type="text" id="nombre_social_responsable" name="nombre_social_responsable" class="form-control" maxlength="35">
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="edad_responsable">Edad:</label>
+                                <input type="number" id="edad_responsable" name="edad_responsable" class="form-control" required>
+                                <span id="edad_responsable_error" class="text-danger"></span>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="pais_nacimiento_responsable">País de Nacimiento:</label>
+                                <select id="pais_nacimiento_responsable" name="pais_nacimiento_responsable" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un país</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Perú">Perú</option>
+                                    <option value="Haití">Haití</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Estados Unidos">Estados Unidos</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+        
+        
+                            <div class="form-group">
+                                <label class="required-field" for="nacionalidad_responsable">Nacionalidad:</label>
+                                <select id="nacionalidad_responsable" name="nacionalidad_responsable" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione una nacionalidad</option>
+                                    <option value="Chilena">Chilena</option>
+                                    <option value="Venezolana">Venezolana</option>
+                                    <option value="Peruana">Peruana</option>
+                                    <option value="Haitiana">Haitiana</option>
+                                    <option value="Colombiana">Colombiana</option>
+                                    <option value="Boliviana">Boliviana</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Norteamericana">Norteamericana</option>
+                                    <option value="Otra">Otra</option>
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="idioma_hablado_responsable">Idioma que Habla:</label>
+                                <select id="idioma_hablado_responsable" name="idioma_hablado_responsable" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un idioma</option>
+                                    <option value="Español">Español</option>
+                                    <option value="Creol">Creol</option>
+                                    <option value="Frances">Frances</option>
+                                    <option value="Inglés">Inglés</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="metodo_contacto_fono_responsable">Método de Contacto (teléfono):</label>
+                                <input type="text" id="metodo_contacto_fono_responsable" name="metodo_contacto_fono_responsable" class="form-control" maxlength="15" required>
+                                <span id="metodo_contacto_fono_responsable_error" class="text-danger"></span>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="metodo_contacto_email_responsable">Método de Contacto (email):</label>
+                                <input type="email" id="metodo_contacto_email_responsable" name="metodo_contacto_email_responsable" class="form-control" required>
+                                <span id="metodo_contacto_email_responsable_error" class="text-danger"></span>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="tipo_documento_identidad_responsable">Documento de Identidad (tipo):</label>
+                                <select id="tipo_documento_identidad_responsable" name="tipo_documento_identidad_responsable" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un tipo de documento</option>
+                                    <option value="DNI">Documento Nacional Identidad (DNI)</option>
+                                    <option value="Carnet">Carnet de Identidad Chileno</option>
+                                    <option value="Pasaporte">Pasaporte</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="required-field" for="numero_documento_identidad_responsable">Número de Documento de Identidad:</label>
+                                <input type="text" id="numero_documento_identidad_responsable" name="numero_documento_identidad_responsable" class="form-control" maxlength="25" required>
+                                <span id="numero_documento_identidad_responsable_error" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" id="paciente_id" name="paciente_id">
+        
+                            <div class="text-center">
+                                <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                            </div>
+                    </form>
+                </div>
+
+                <!-- Vista previa -->
                 <div id="previewDiv" style="display:none;">
                     <h2 class="text-center">Vista Previa</h2>
-                    <p><strong>Nombre Completo:</strong> <span id="preview_nombre_completo"></span></p>
-                    <p><strong>Nombre Social:</strong> <span id="preview_nombre_social"></span></p>
-                    <p><strong>Edad:</strong> <span id="preview_edad"></span></p>
-                    <p><strong>País de Nacimiento:</strong> <span id="preview_pais_nacimiento"></span></p>
-                    <p><strong>Región/Zona de Nacimiento:</strong> <span id="preview_region_zona_nacimiento"></span></p>
-                    <p><strong>Región/Zona de Residencia Actual:</strong> <span id="preview_region_zona_residencia_actual"></span></p>
-                    <p><strong>Nacionalidad:</strong> <span id="preview_nacionalidad"></span></p>
-                    <p><strong>Idioma que Habla:</strong> <span id="preview_idioma_hablado"></span></p>
-                    <p><strong>Método de Contacto (teléfono):</strong> <span id="preview_metodo_contacto_fono"></span></p>
-                    <p><strong>Método de Contacto (email):</strong> <span id="preview_metodo_contacto_email"></span></p>
-                    <p><strong>Tipo de Documento de Identidad:</strong> <span id="preview_tipo_documento_identidad"></span></p>
-                    <p><strong>Número de Documento de Identidad:</strong> <span id="preview_numero_documento_identidad"></span></p>
-
+                    <div class="text-center">
+                        <p><strong>Nombre Completo:</strong> <span id="preview_nombre_completo"></span></p>
+                        <p><strong>Nombre Social:</strong> <span id="preview_nombre_social"></span></p>
+                        <p><strong>Edad:</strong> <span id="preview_edad"></span></p>
+                        <p><strong>País de Nacimiento:</strong> <span id="preview_pais_nacimiento"></span></p>
+                        <p><strong>Región/Zona de Nacimiento:</strong> <span id="preview_region_zona_nacimiento"></span></p>
+                        <p><strong>Región/Zona de Residencia Actual:</strong> <span id="preview_region_zona_residencia_actual"></span></p>
+                        <p><strong>Nacionalidad:</strong> <span id="preview_nacionalidad"></span></p>
+                        <p><strong>Idioma que Habla:</strong> <span id="preview_idioma_hablado"></span></p>
+                        <p><strong>Método de Contacto (teléfono):</strong> <span id="preview_metodo_contacto_fono"></span></p>
+                        <p><strong>Método de Contacto (email):</strong> <span id="preview_metodo_contacto_email"></span></p>
+                        <p><strong>Tipo de Documento de Identidad:</strong> <span id="preview_tipo_documento_identidad"></span></p>
+                        <p><strong>Número de Documento de Identidad:</strong> <span id="preview_numero_documento_identidad"></span></p>
+                        <p><strong>Nombre Completo (Responsable):</strong> <span id="preview_nombre_completo_responsable"></span></p>
+                        <p><strong>Nombre Social(Responsable):</strong> <span id="preview_nombre_social_responsable"></span></p>
+                        <p><strong>Edad(Responsable):</strong> <span id="preview_edad_responsable"></span></p>
+                        <p><strong>País de Nacimiento(Responsable):</strong> <span id="preview_pais_nacimiento_responsable"></span></p>
+                        <p><strong>Nacionalidad(Responsable):</strong> <span id="preview_nacionalidad_responsable"></span></p>
+                        <p><strong>Idioma que Habla(Responsable):</strong> <span id="preview_idioma_responsable"></span></p>
+                        <p><strong>Método de Contacto Responsable (teléfono):</strong> <span id="preview_metodo_contacto_fono_responsable"></span></p>
+                        <p><strong>Método de Contacto Responsable (email):</strong> <span id="preview_metodo_contacto_email_responsable"></span></p>
+                        <p><strong>Tipo de Documento de Identidad(Responsable):</strong> <span id="preview_tipo_documento_identidad_responsable"></span></p>
+                        <p><strong>Número de Documento de Identidad(Responsable):</strong> <span id="preview_numero_documento_identidad_responsable"></span></p>
+                    </div>
                     <div class="text-center">
                         <button type="button" id="editButton" class="btn btn-secondary btn-lg">Editar</button>
                         <button type="submit" id="submitButton" class="btn btn-success btn-lg">Enviar</button>
                     </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-        function validateForm() {
+    
+    function validateForm() {
         let isValid = true;
 
-        // Get all fields and error message elements
+        // Validación de campos en el primer formulario
         const fields = {
             nombre_completo: "Debe ingresar su nombre completo.",
             edad: "Debe ingresar su edad.",
@@ -160,70 +313,105 @@
         };
 
         Object.keys(fields).forEach(fieldId => {
-            let value = document.getElementById(fieldId).value.trim();
-            let errorElement = document.getElementById(`${fieldId}_error`);
-            if (value === "" || (document.getElementById(fieldId).tagName === "SELECT" && value === null)) {
-                errorElement.innerText = fields[fieldId];
-                isValid = false;
-            } else {
-                errorElement.innerText = "";
+            let value = document.getElementById(fieldId);
+            let errorElement = document.getElementById('${fieldId}_error');
+            if (value && errorElement) {
+                let fieldValue = value.value.trim();
+                if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                    errorElement.innerText = fields[fieldId];
+                    isValid = false;
+                } else {
+                    errorElement.innerText = "";
+                }
             }
         });
 
         return isValid;
     }
 
-    function showPreview() {
-        if (validateForm()) {
-            // Show preview of entered data
-            let previewMessage = `Vista previa:\n`;
-            previewMessage += `Nombre Completo: ${document.getElementById('nombre_completo').value}\n`;
-            previewMessage += `Nombre Social: ${document.getElementById('nombre_social').value}\n`;
-            previewMessage += `Edad: ${document.getElementById('edad').value}\n`;
-            previewMessage += `País de Nacimiento: ${document.getElementById('pais_nacimiento').value}\n`;
-            previewMessage += `Región/Zona de Nacimiento: ${document.getElementById('region_zona_nacimiento').value}\n`;
-            previewMessage += `Región/Zona de Residencia Actual: ${document.getElementById('region_zona_residencia_actual').value}\n`;
-            previewMessage += `Nacionalidad: ${document.getElementById('nacionalidad').value}\n`;
-            previewMessage += `Idioma que Habla: ${document.getElementById('idioma_hablado').value}\n`;
-            previewMessage += `Método de Contacto (teléfono): ${document.getElementById('metodo_contacto_fono').value}\n`;
-            previewMessage += `Método de Contacto (email): ${document.getElementById('metodo_contacto_email').value}\n`;
-            previewMessage += `Tipo de Documento de Identidad: ${document.getElementById('tipo_documento_identidad').value}\n`;
-            previewMessage += `Número de Documento de Identidad: ${document.getElementById('numero_documento_identidad').value}\n`;
+    function populatePreview() {
+        // Datos del primer formulario
+            document.getElementById('preview_nombre_completo').innerText = document.getElementById('nombre_completo').value;
+            document.getElementById('preview_nombre_social').innerText = document.getElementById('nombre_social').value;
+            document.getElementById('preview_edad').innerText = document.getElementById('edad').value;
+            document.getElementById('preview_pais_nacimiento').innerText = document.getElementById('pais_nacimiento').value;
+            document.getElementById('preview_region_zona_nacimiento').innerText = document.getElementById('region_zona_nacimiento').value;
+            document.getElementById('preview_region_zona_residencia_actual').innerText = document.getElementById('region_zona_residencia_actual').value;
+            document.getElementById('preview_nacionalidad').innerText = document.getElementById('nacionalidad').value;
+            document.getElementById('preview_idioma_hablado').innerText = document.getElementById('idioma_hablado').value;
+            document.getElementById('preview_metodo_contacto_fono').innerText = document.getElementById('metodo_contacto_fono').value;
+            document.getElementById('preview_metodo_contacto_email').innerText = document.getElementById('metodo_contacto_email').value;
+            document.getElementById('preview_tipo_documento_identidad').innerText = document.getElementById('tipo_documento_identidad').value;
+            document.getElementById('preview_numero_documento_identidad').innerText = document.getElementById('numero_documento_identidad').value;
 
-            alert(previewMessage);
+            // Datos del segundo formulario (si están visibles)
+            document.getElementById('preview_nombre_completo_responsable').innerText = document.getElementById('nombre_completo_responsable') ? document.getElementById('nombre_completo_responsable').value : '';
+            document.getElementById('preview_nombre_social_responsable').innerText = document.getElementById('nombre_social_responsable') ? document.getElementById('nombre_social_responsable').value : '';
+            document.getElementById('preview_edad_responsable').innerText = document.getElementById('edad_responsable') ? document.getElementById('edad_responsable').value : '';
+            document.getElementById('preview_pais_nacimiento_responsable').innerText = document.getElementById('pais_nacimiento_responsable') ? document.getElementById('pais_nacimiento_responsable').value : '';
+            document.getElementById('preview_nacionalidad_responsable').innerText = document.getElementById('nacionalidad_responsable') ? document.getElementById('nacionalidad_responsable').value : '';
+            document.getElementById('preview_idioma_responsable').innerText = document.getElementById('idioma_responsable') ? document.getElementById('idioma_responsable').value : '';
+            document.getElementById('preview_metodo_contacto_fono_responsable').innerText = document.getElementById('metodo_contacto_fono_responsable') ? document.getElementById('metodo_contacto_fono_responsable').value : '';
+            document.getElementById('preview_metodo_contacto_email_responsable').innerText = document.getElementById('metodo_contacto_email_responsable') ? document.getElementById('metodo_contacto_email_responsable').value : '';
+            document.getElementById('preview_tipo_documento_identidad_responsable').innerText = document.getElementById('tipo_documento_identidad_responsable') ? document.getElementById('tipo_documento_identidad_responsable').value : '';
+            document.getElementById('preview_numero_documento_identidad_responsable').innerText = document.getElementById('numero_documento_identidad_responsable') ? document.getElementById('numero_documento_identidad_responsable').value : '';
         }
-    }
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const previewButton = document.getElementById('previewButton');
+        const pacienteForm = document.getElementById('pacienteForm');
+        const formResponsable = document.getElementById('form-responsable');
+        const esPacienteSelect = document.getElementById('es-paciente');
+        const extraFields = document.getElementById('extra-fields');
+        const previewDiv = document.getElementById('previewDiv');
+        const editButton = document.getElementById('editButton');
+        const submitButton = document.getElementById('submitButton');
+        
 
-    document.getElementById('previewButton').addEventListener('click', function() {
-        // Mostrar datos en la vista previa
-        document.getElementById('preview_nombre_completo').innerText = document.getElementById('nombre_completo').value;
-        document.getElementById('preview_nombre_social').innerText = document.getElementById('nombre_social').value;
-        document.getElementById('preview_edad').innerText = document.getElementById('edad').value;
-        document.getElementById('preview_pais_nacimiento').innerText = document.getElementById('pais_nacimiento').value;
-        document.getElementById('preview_region_zona_nacimiento').innerText = document.getElementById('region_zona_nacimiento').value;
-        document.getElementById('preview_region_zona_residencia_actual').innerText = document.getElementById('region_zona_residencia_actual').value;
-        document.getElementById('preview_nacionalidad').innerText = document.getElementById('nacionalidad').value;
-        document.getElementById('preview_idioma_hablado').innerText = document.getElementById('idioma_hablado').value;
-        document.getElementById('preview_metodo_contacto_fono').innerText = document.getElementById('metodo_contacto_fono').value;
-        document.getElementById('preview_metodo_contacto_email').innerText = document.getElementById('metodo_contacto_email').value;
-        document.getElementById('preview_tipo_documento_identidad').innerText = document.getElementById('tipo_documento_identidad').value;
-        document.getElementById('preview_numero_documento_identidad').innerText = document.getElementById('numero_documento_identidad').value;
+        // Mostrar el segundo formulario al presionar el botón "Siguiente"
+        document.querySelector('.btn-primary.btn-lg').addEventListener('click', function() {
+            if (validateForm()) {
+                pacienteForm.style.display = 'none';
+                formResponsable.style.display = 'block';
+            }
+        });
 
-        // Ocultar formulario y mostrar vista previa
-        document.getElementById('pacienteForm').style.display = 'none';
-        document.getElementById('previewDiv').style.display = 'block';
-    });
+        // Mostrar los campos adicionales si no es el paciente
+        esPacienteSelect.addEventListener('change', function() {
+            if (esPacienteSelect.value === 'no') {
+                extraFields.style.display = 'block';
+            } else {
+                extraFields.style.display = 'none';
+            }
+        });
 
-    document.getElementById('editButton').addEventListener('click', function() {
-        // Mostrar formulario y ocultar vista previa
-        document.getElementById('previewDiv').style.display = 'none';
-        document.getElementById('pacienteForm').style.display = 'block';
-    });
+        // Mostrar la vista previa
+        document.getElementById('previewButton').addEventListener('click', function() {
+            if (validateForm()) {
+                populatePreview();
+                // Ocultar formulario y mostrar vista previa
+                document.getElementById('pacienteForm').style.display = 'none';
+                document.getElementById('responsableForm').style.display = 'none';
+                document.getElementById('previewDiv').style.display = 'block';
+            }
+        });
 
-    document.getElementById('submitButton').addEventListener('click', function() {
-        // Enviar el formulario
-        document.getElementById('pacienteForm').submit();
+    
+
+        editButton.addEventListener('click', function() {
+            // Mostrar formulario y ocultar vista previa
+            previewDiv.style.display = 'none';
+            pacienteForm.style.display = 'block';
+            formResponsable.style.display='block';
+        });
+
+        submitButton.addEventListener('click', function() {
+            if (validateForm()) {
+            pacienteForm.submit();
+            formResponsable.submit();
+        }
+
+        });
     });
 </script>
 

@@ -52,6 +52,30 @@ class Pacientes(models.Model):
     def __str__(self):
         return self.numero_documento_identidad
     
+class Responsable(models.Model):
+    paciente = models.ForeignKey(Pacientes, on_delete=models.CASCADE, related_name='responsables')
+    es_paciente = models.BooleanField()
+    relacion = models.CharField(max_length=50, blank=True, null=True)
+    nombre_completo_responsable = models.CharField(max_length=35)
+    nombre_social_responsable=models.CharField(max_length=35,blank=True,null=True)
+    edad_responsable=models.PositiveBigIntegerField()
+    pais_nacimiento_responsable=models.CharField(max_length=50)
+    nacionalidad_responsable=models.CharField(max_length=50)
+    idioma_responsable=models.CharField(max_length=50)
+    metodo_contacto_fono_responsable=models.CharField(max_length=15,blank=True,null=True)
+    metodo_contacto_email_responsable=models.EmailField(blank=True,null=True)
+    tipo_documento_identidad_responsable=models.CharField(max_length=50)
+    numero_documento_identidad_responsable=models.CharField(max_length=25)
+
+    class Meta:
+        verbose_name="Responsable"
+        verbose_name_plural="Responsables"
+        db_table='responsables'
+    def __str__(self):
+        return self.paciente    
+
+
+    
     
 
 
