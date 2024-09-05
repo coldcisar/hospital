@@ -31,48 +31,41 @@ class Doctores(models.Model):
 
 
 class Pacientes(models.Model):
-    nombre_completo = models.CharField(max_length=35)
+    nombre_completo = models.CharField(max_length=35,blank=True, null=True)
     nombre_social = models.CharField(max_length=35, blank=True, null=True)
-    edad = models.PositiveIntegerField()
-    pais_nacimiento = models.CharField(max_length=50)
+    edad = models.PositiveIntegerField(blank=True, null=True)
+    pais_nacimiento = models.CharField(max_length=50,blank=True, null=True)
     region_zona_nacimiento = models.CharField(max_length=100, blank=True, null=True)
     region_zona_residencia_actual = models.CharField(max_length=100, blank=True, null=True)
-    nacionalidad = models.CharField(max_length=50)
-    idioma_hablado = models.CharField(max_length=50)
+    nacionalidad = models.CharField(max_length=50,blank=True, null=True)
+    idioma_hablado = models.CharField(max_length=50,blank=True, null=True)
     metodo_contacto_fono = models.CharField(max_length=15, blank=True, null=True)
     metodo_contacto_email = models.EmailField(blank=True, null=True)
-    tipo_documento_identidad = models.CharField(max_length=50)
-    numero_documento_identidad = models.CharField(max_length=25)
+    tipo_documento_identidad = models.CharField(max_length=50,blank=True, null=True)
+    numero_documento_identidad = models.CharField(max_length=25,blank=True, null=True)
+    es_paciente = models.BooleanField(default=False,null=True)
+    relacion = models.CharField(max_length=50, blank=True, null=True)
+    nombre_completo_responsable = models.CharField(max_length=35, blank=True, null=True)
+    nombre_social_responsable = models.CharField(max_length=35, blank=True, null=True)
+    edad_responsable = models.PositiveIntegerField(blank=True, null=True)
+    pais_nacimiento_responsable = models.CharField(max_length=50, blank=True, null=True)
+    nacionalidad_responsable = models.CharField(max_length=50, blank=True, null=True)
+    idioma_responsable = models.CharField(max_length=50, blank=True, null=True)
+    metodo_contacto_fono_responsable = models.CharField(max_length=15, blank=True, null=True)
+    metodo_contacto_email_responsable = models.EmailField(blank=True, null=True)
+    tipo_documento_identidad_responsable = models.CharField(max_length=50, blank=True, null=True)
+    numero_documento_identidad_responsable = models.CharField(max_length=25, blank=True, null=True)
 
     class Meta:
         verbose_name = "Paciente"
-        verbose_name_plural ="Pacientes"
-        db_table ='pacientes'
+        verbose_name_plural = "Pacientes"
+        db_table = 'pacientes'
 
     def __str__(self):
         return self.numero_documento_identidad
-    
-class Responsable(models.Model):
-    paciente = models.ForeignKey(Pacientes, on_delete=models.CASCADE, related_name='responsables')
-    es_paciente = models.BooleanField()
-    relacion = models.CharField(max_length=50, blank=True, null=True)
-    nombre_completo_responsable = models.CharField(max_length=35)
-    nombre_social_responsable=models.CharField(max_length=35,blank=True,null=True)
-    edad_responsable=models.PositiveBigIntegerField()
-    pais_nacimiento_responsable=models.CharField(max_length=50)
-    nacionalidad_responsable=models.CharField(max_length=50)
-    idioma_responsable=models.CharField(max_length=50)
-    metodo_contacto_fono_responsable=models.CharField(max_length=15,blank=True,null=True)
-    metodo_contacto_email_responsable=models.EmailField(blank=True,null=True)
-    tipo_documento_identidad_responsable=models.CharField(max_length=50)
-    numero_documento_identidad_responsable=models.CharField(max_length=25)
 
-    class Meta:
-        verbose_name="Responsable"
-        verbose_name_plural="Responsables"
-        db_table='responsables'
-    def __str__(self):
-        return self.paciente    
+    
+    
 
 
     

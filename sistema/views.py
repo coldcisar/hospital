@@ -4,7 +4,7 @@ from contacto_hospital.models import Pacientes,nuevoUsuario,Doctores
 from django.contrib import messages 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import PacienteForm, ResponsableForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 def paginaIndex(request):
@@ -15,45 +15,66 @@ def paginaAgregarP(request):
     return render(request, 'agregarP.html')
 
 
+@csrf_exempt
 def agregarP(request):
     if request.method == 'POST':
-        paciente_form = PacienteForm(request.POST)
-        responsable_form = None
+        # Recibir los datos del formulario del paciente
+        nombre_completo = request.POST.get('nombre_completo')
+        nombre_social = request.POST.get('nombre_social', '')
+        edad = request.POST.get('edad')
+        pais_nacimiento = request.POST.get('pais_nacimiento')
+        region_zona_nacimiento = request.POST.get('region_zona_nacimiento', '')
+        region_zona_residencia_actual = request.POST.get('region_zona_residencia_actual', '')
+        nacionalidad = request.POST.get('nacionalidad')
+        idioma_hablado = request.POST.get('idioma_hablado')
+        metodo_contacto_fono = request.POST.get('metodo_contacto_fono')
+        metodo_contacto_email = request.POST.get('metodo_contacto_email')
+        tipo_documento_identidad = request.POST.get('tipo_documento_identidad')
+        numero_documento_identidad = request.POST.get('numero_documento_identidad')
+        es_paciente = request.POST.get('es_paciente')
+        relacion = request.POST.get('relacion')
+        nombre_completo_responsable = request.POST.get('nombre_completo_responsable')
+        nombre_social_responsable = request.POST.get('nombre_social_responsable', '')
+        edad_responsable = request.POST.get('edad_responsable')
+        pais_nacimiento_responsable = request.POST.get('pais_nacimiento_responsable')
+        nacionalidad_responsable = request.POST.get('nacionalidad_responsable')
+        idioma_responsable = request.POST.get('idioma_responsable')
+        metodo_contacto_fono_responsable = request.POST.get('metodo_contacto_fono_responsable')
+        metodo_contacto_email_responsable = request.POST.get('metodo_contacto_email_responsable')
+        tipo_documento_identidad_responsable = request.POST.get('tipo_documento_identidad_responsable')
+        numero_documento_identidad_responsable = request.POST.get('numero_documento_identidad_responsable')
+        paciente = Pacientes(
+            nombre_completo=nombre_completo,
+            nombre_social=nombre_social,
+            edad=edad,
+            pais_nacimiento=pais_nacimiento,
+            region_zona_nacimiento=region_zona_nacimiento,
+            region_zona_residencia_actual=region_zona_residencia_actual,
+            nacionalidad=nacionalidad,
+            idioma_hablado=idioma_hablado,
+            metodo_contacto_fono=metodo_contacto_fono,
+            metodo_contacto_email=metodo_contacto_email,
+            tipo_documento_identidad=tipo_documento_identidad,
+            numero_documento_identidad=numero_documento_identidad,
+            es_paciente=es_paciente,
+            relacion=relacion,
+            nombre_completo_responsable=nombre_completo_responsable,
+            nombre_social_responsable=nombre_social_responsable,
+            edad_responsable=edad_responsable,
+            pais_nacimiento_responsable=pais_nacimiento_responsable,
+            nacionalidad_responsable=nacionalidad_responsable,
+            idioma_responsable=idioma_responsable,
+            metodo_contacto_fono_responsable=metodo_contacto_fono_responsable,
+            metodo_contacto_email_responsable=metodo_contacto_email_responsable,
+            tipo_documento_identidad_responsable=tipo_documento_identidad_responsable,
+            numero_documento_identidad_responsable=numero_documento_identidad_responsable,
+        )
+        paciente.save()
+   
+        return redirect('list_paciente')
 
-        if paciente_form.is_valid():
-            paciente = paciente_form.save()
-
-            es_paciente = request.POST.get('es-paciente')
-            if es_paciente == 'no':
-                responsable_form = ResponsableForm(request.POST)
-                if responsable_form.is_valid():
-                    responsable = responsable_form.save(commit=False)
-                    responsable.paciente = paciente
-                    responsable.save()
-                    messages.success(request, 'Paciente y responsable registrados correctamente.')
-                    return redirect('list_paciente')
-                else:
-                    # Mostrar errores del formulario de responsable.
-                    for error in responsable_form.errors.values():
-                        for message in error:
-                            messages.error(request, message)
-            else:
-                messages.success(request, 'Paciente registrado correctamente.')
-                return redirect('list_paciente')
-
-        # Mostrar errores del formulario de paciente.
-        for error in paciente_form.errors.values():
-            for message in error:
-                messages.error(request, message)
-
-    else:
-        paciente_form = PacienteForm()
-        responsable_form = ResponsableForm()
-
-    return render(request, 'agregarP.html', {
-        'paciente_form': paciente_form,
-        'responsable_form': responsable_form
-    })
+    # Si no es un POST, renderizar la página del formulario
+    return render(request, 'agregarP.html')
 
     
 def agregarD(request):
@@ -112,6 +133,13 @@ def list_doctor(request):
         "doctores": doctores
     }
     return render(request, template_name,context)    
+def list_responsable(request):
+    template_name='paciente.html'
+    responsable=Responsable.objects.all()
+    context={
+        "responsable": responsable
+    }
+    return render(request, template_name,context)
 
 
 

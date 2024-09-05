@@ -2,6 +2,18 @@
 {% block content %}
 {% load static %}
 
+
+<style>
+    .required-field::after {
+        content: "*";
+        color: red;
+    }
+    .hidden {
+        display: none;
+    }
+
+</style>
+
 <div class="right_col" role="main">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,7 +24,7 @@
                 </p>
 
                 <!-- Formulario del Paciente -->
-                <form id="pacienteForm" method="post" action="{% url 'agregarP' %}">
+                <form id="completoForm" method="post" action="{% url 'agregarP' %}">
                     {% csrf_token %}
                     
                     <div class="form-group">
@@ -116,29 +128,28 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="button" id="" class="btn btn-primary btn-lg">Siguiente</button>
+                        <button type="button" id="siguienteButton" class="btn btn-primary btn-lg">Siguiente</button>
                     </div>
                 </form>
-
-                <!-- Formulario del Responsable -->
-                <div id="form-responsable" style="display:none;">
+            
+                    <!-- Formulario del Responsable -->
+                <div id="form_responsable" class="hidden">
                     <h2>Persona Responsable Médico Legal del Paciente, Acompañante</h2>
                     <p>
                         La figura del acompañante ya sea un familiar o no, adquiere una relevancia especial en el contexto de patologías complejas y/o múltiples...
                     </p>
-                    
                     <form id="responsableForm" method="post" action="{% url 'agregarP' %}">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="es-paciente">* ¿Es usted el Paciente?</label>
-                            <select id="es-paciente" name="es-paciente" class="form-control" required>
+                            <label for="es_paciente">* ¿Es usted el Paciente?</label>
+                            <select id="es_paciente" name="es_paciente" class="form-control" required>
                                 <option value="">Seleccione una opción</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
+                                <option value="True">Sí</option>
+                                <option value="False">No</option>
                             </select>
                         </div>
         
-                        <div id="extra-fields" class="hidden">
+                        <div id="extra_fields" class="hidden">
                             <div class="form-group">
                                 <label for="relacion">¿Relación con el paciente?</label>
                                 <select id="relacion" name="relacion" class="form-control">
@@ -158,6 +169,7 @@
                                     <option value="Conviviente">Conviviente en misma residencia, no relacionados como pareja</option>
                                     <option value="Otro">Otro</option>
                                 </select>
+                                
                             </div>
                             <div class="form-group">
                                 <label class="required-field" for="nombre_completo_responsable">Nombre Completo:</label>
@@ -210,8 +222,8 @@
                             </div>
         
                             <div class="form-group">
-                                <label class="required-field" for="idioma_hablado_responsable">Idioma que Habla:</label>
-                                <select id="idioma_hablado_responsable" name="idioma_hablado_responsable" class="form-control" required>
+                                <label class="required-field" for="idioma_responsable">Idioma que Habla:</label>
+                                <select id="idioma_responsable" name="idioma_responsable" class="form-control" required>
                                     <option value="" disabled selected>Seleccione un idioma</option>
                                     <option value="Español">Español</option>
                                     <option value="Creol">Creol</option>
@@ -249,16 +261,21 @@
                                 <input type="text" id="numero_documento_identidad_responsable" name="numero_documento_identidad_responsable" class="form-control" maxlength="25" required>
                                 <span id="numero_documento_identidad_responsable_error" class="text-danger"></span>
                             </div>
-                            <input type="hidden" id="paciente_id" name="paciente_id">
         
                             <div class="text-center">
                                 <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
                             </div>
+                        </div>
                     </form>
                 </div>
+            
+                      
+            
+                
+                
 
                 <!-- Vista previa -->
-                <div id="previewDiv" style="display:none;">
+                <div id="previewDiv" class="hidden">
                     <h2 class="text-center">Vista Previa</h2>
                     <div class="text-center">
                         <p><strong>Nombre Completo:</strong> <span id="preview_nombre_completo"></span></p>
@@ -273,6 +290,7 @@
                         <p><strong>Método de Contacto (email):</strong> <span id="preview_metodo_contacto_email"></span></p>
                         <p><strong>Tipo de Documento de Identidad:</strong> <span id="preview_tipo_documento_identidad"></span></p>
                         <p><strong>Número de Documento de Identidad:</strong> <span id="preview_numero_documento_identidad"></span></p>
+                        <p><strong>Es paciente?:</strong> <span id="preview_es_paciente"></span></p>
                         <p><strong>Nombre Completo (Responsable):</strong> <span id="preview_nombre_completo_responsable"></span></p>
                         <p><strong>Nombre Social(Responsable):</strong> <span id="preview_nombre_social_responsable"></span></p>
                         <p><strong>Edad(Responsable):</strong> <span id="preview_edad_responsable"></span></p>
@@ -285,19 +303,23 @@
                         <p><strong>Número de Documento de Identidad(Responsable):</strong> <span id="preview_numero_documento_identidad_responsable"></span></p>
                     </div>
                     <div class="text-center">
+                        {% csrf_token %}
+                        {{ completoForm.as_p }}
+                        {{ responsableForm.as_p }}
                         <button type="button" id="editButton" class="btn btn-secondary btn-lg">Editar</button>
                         <button type="submit" id="submitButton" class="btn btn-success btn-lg">Enviar</button>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
+
 
 <script>
     
     function validateForm() {
         let isValid = true;
+        console.log("Validando formulario...");
 
         // Validación de campos en el primer formulario
         const fields = {
@@ -314,7 +336,7 @@
 
         Object.keys(fields).forEach(fieldId => {
             let value = document.getElementById(fieldId);
-            let errorElement = document.getElementById('${fieldId}_error');
+            let errorElement = document.getElementById(`${fieldId}_error`);
             if (value && errorElement) {
                 let fieldValue = value.value.trim();
                 if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
@@ -326,93 +348,133 @@
             }
         });
 
+        // Validación de campos del responsable si están visibles
+        const formResponsable = document.getElementById('form_responsable');
+        if (formResponsable.classList.contains('hidden') === false) {
+            const responsibleFields = {
+                es_responsable:"Debe ingresar si es el paciente o no",
+                nombre_completo_responsable: "Debe ingresar el nombre completo del responsable.",
+                edad_responsable: "Debe ingresar la edad del responsable.",
+                pais_nacimiento_responsable: "Debe ingresar el país de nacimiento del responsable.",
+                nacionalidad_responsable: "Debe ingresar la nacionalidad del responsable.",
+                idioma_responsable: "Debe ingresar el idioma que habla el responsable.",
+                metodo_contacto_fono_responsable: "Debe ingresar un método de contacto (teléfono) del responsable.",
+                metodo_contacto_email_responsable: "Debe ingresar un email de contacto del responsable.",
+                tipo_documento_identidad_responsable: "Debe ingresar el tipo de documento de identidad del responsable.",
+                numero_documento_identidad_responsable: "Debe ingresar un número de documento de identidad del responsable."
+            };
+
+            Object.keys(responsibleFields).forEach(fieldId => {
+                let value = document.getElementById(fieldId);
+                let errorElement = document.getElementById(`${fieldId}_error`);
+                if (value && errorElement) {
+                    let fieldValue = value.value.trim();
+                    if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                        errorElement.innerText = responsibleFields[fieldId];
+                        isValid = false;
+                    } else {
+                        errorElement.innerText = "";
+                    }
+                }
+            });
+        }
+        console.log("Formulario válido:", isValid);
         return isValid;
     }
 
     function populatePreview() {
         // Datos del primer formulario
-            document.getElementById('preview_nombre_completo').innerText = document.getElementById('nombre_completo').value;
-            document.getElementById('preview_nombre_social').innerText = document.getElementById('nombre_social').value;
-            document.getElementById('preview_edad').innerText = document.getElementById('edad').value;
-            document.getElementById('preview_pais_nacimiento').innerText = document.getElementById('pais_nacimiento').value;
-            document.getElementById('preview_region_zona_nacimiento').innerText = document.getElementById('region_zona_nacimiento').value;
-            document.getElementById('preview_region_zona_residencia_actual').innerText = document.getElementById('region_zona_residencia_actual').value;
-            document.getElementById('preview_nacionalidad').innerText = document.getElementById('nacionalidad').value;
-            document.getElementById('preview_idioma_hablado').innerText = document.getElementById('idioma_hablado').value;
-            document.getElementById('preview_metodo_contacto_fono').innerText = document.getElementById('metodo_contacto_fono').value;
-            document.getElementById('preview_metodo_contacto_email').innerText = document.getElementById('metodo_contacto_email').value;
-            document.getElementById('preview_tipo_documento_identidad').innerText = document.getElementById('tipo_documento_identidad').value;
-            document.getElementById('preview_numero_documento_identidad').innerText = document.getElementById('numero_documento_identidad').value;
+        console.log("Poblando vista previa...");
+        document.getElementById('preview_nombre_completo').innerText = document.getElementById('nombre_completo').value;
+        document.getElementById('preview_nombre_social').innerText = document.getElementById('nombre_social').value || 'N/A';
+        document.getElementById('preview_edad').innerText = document.getElementById('edad').value;
+        document.getElementById('preview_pais_nacimiento').innerText = document.getElementById('pais_nacimiento').value;
+        document.getElementById('preview_region_zona_nacimiento').innerText = document.getElementById('region_zona_nacimiento').value || 'N/A';
+        document.getElementById('preview_region_zona_residencia_actual').innerText = document.getElementById('region_zona_residencia_actual').value || 'N/A';
+        document.getElementById('preview_nacionalidad').innerText = document.getElementById('nacionalidad').value;
+        document.getElementById('preview_idioma_hablado').innerText = document.getElementById('idioma_hablado').value;
+        document.getElementById('preview_metodo_contacto_fono').innerText = document.getElementById('metodo_contacto_fono').value;
+        document.getElementById('preview_metodo_contacto_email').innerText = document.getElementById('metodo_contacto_email').value;
+        document.getElementById('preview_tipo_documento_identidad').innerText = document.getElementById('tipo_documento_identidad').value;
+        document.getElementById('preview_numero_documento_identidad').innerText = document.getElementById('numero_documento_identidad').value;
 
-            // Datos del segundo formulario (si están visibles)
-            document.getElementById('preview_nombre_completo_responsable').innerText = document.getElementById('nombre_completo_responsable') ? document.getElementById('nombre_completo_responsable').value : '';
-            document.getElementById('preview_nombre_social_responsable').innerText = document.getElementById('nombre_social_responsable') ? document.getElementById('nombre_social_responsable').value : '';
-            document.getElementById('preview_edad_responsable').innerText = document.getElementById('edad_responsable') ? document.getElementById('edad_responsable').value : '';
-            document.getElementById('preview_pais_nacimiento_responsable').innerText = document.getElementById('pais_nacimiento_responsable') ? document.getElementById('pais_nacimiento_responsable').value : '';
-            document.getElementById('preview_nacionalidad_responsable').innerText = document.getElementById('nacionalidad_responsable') ? document.getElementById('nacionalidad_responsable').value : '';
-            document.getElementById('preview_idioma_responsable').innerText = document.getElementById('idioma_responsable') ? document.getElementById('idioma_responsable').value : '';
-            document.getElementById('preview_metodo_contacto_fono_responsable').innerText = document.getElementById('metodo_contacto_fono_responsable') ? document.getElementById('metodo_contacto_fono_responsable').value : '';
-            document.getElementById('preview_metodo_contacto_email_responsable').innerText = document.getElementById('metodo_contacto_email_responsable') ? document.getElementById('metodo_contacto_email_responsable').value : '';
-            document.getElementById('preview_tipo_documento_identidad_responsable').innerText = document.getElementById('tipo_documento_identidad_responsable') ? document.getElementById('tipo_documento_identidad_responsable').value : '';
-            document.getElementById('preview_numero_documento_identidad_responsable').innerText = document.getElementById('numero_documento_identidad_responsable') ? document.getElementById('numero_documento_identidad_responsable').value : '';
+        // Datos del segundo formulario (si están visibles)
+        const formResponsable = document.getElementById('form_responsable');
+        if (formResponsable.classList.contains('hidden') === false) {
+            document.getElementById('preview_es_paciente').innerText = document.getElementById('es_paciente').value;
+            document.getElementById('preview_nombre_completo_responsable').innerText = document.getElementById('nombre_completo_responsable').value;
+            document.getElementById('preview_nombre_social_responsable').innerText = document.getElementById('nombre_social_responsable').value || 'N/A';
+            document.getElementById('preview_edad_responsable').innerText = document.getElementById('edad_responsable').value;
+            document.getElementById('preview_pais_nacimiento_responsable').innerText = document.getElementById('pais_nacimiento_responsable').value;
+            document.getElementById('preview_nacionalidad_responsable').innerText = document.getElementById('nacionalidad_responsable').value;
+            document.getElementById('preview_idioma_responsable').innerText = document.getElementById('idioma_responsable').value;
+            document.getElementById('preview_metodo_contacto_fono_responsable').innerText = document.getElementById('metodo_contacto_fono_responsable').value;
+            document.getElementById('preview_metodo_contacto_email_responsable').innerText = document.getElementById('metodo_contacto_email_responsable').value;
+            document.getElementById('preview_tipo_documento_identidad_responsable').innerText = document.getElementById('tipo_documento_identidad_responsable').value;
+            document.getElementById('preview_numero_documento_identidad_responsable').innerText = document.getElementById('numero_documento_identidad_responsable').value;
+        } else {
+            // Asignar 'N/A' o dejar en blanco si no aplica
+            document.getElementById('preview_es_paciente').innerText = 'N/A';
+            document.getElementById('preview_nombre_completo_responsable').innerText = 'N/A';
+            document.getElementById('preview_nombre_social_responsable').innerText = 'N/A';
+            document.getElementById('preview_edad_responsable').innerText = 'N/A';
+            document.getElementById('preview_pais_nacimiento_responsable').innerText = 'N/A';
+            document.getElementById('preview_nacionalidad_responsable').innerText = 'N/A';
+            document.getElementById('preview_idioma_responsable').innerText = 'N/A';
+            document.getElementById('preview_metodo_contacto_fono_responsable').innerText = 'N/A';
+            document.getElementById('preview_metodo_contacto_email_responsable').innerText = 'N/A';
+            document.getElementById('preview_tipo_documento_identidad_responsable').innerText = 'N/A';
+            document.getElementById('preview_numero_documento_identidad_responsable').innerText = 'N/A';
         }
+    }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const previewButton = document.getElementById('previewButton');
-        const pacienteForm = document.getElementById('pacienteForm');
-        const formResponsable = document.getElementById('form-responsable');
-        const esPacienteSelect = document.getElementById('es-paciente');
-        const extraFields = document.getElementById('extra-fields');
-        const previewDiv = document.getElementById('previewDiv');
-        const editButton = document.getElementById('editButton');
-        const submitButton = document.getElementById('submitButton');
-        
+    const siguienteButton = document.getElementById('siguienteButton');
+    const completoForm = document.getElementById('completoForm');
+    const formResponsable = document.getElementById('form_responsable');
+    const esPacienteSelect = document.getElementById('es_paciente');
+    const extraFields = document.getElementById('extra_fields');
+    const previewDiv = document.getElementById('previewDiv');
+    const editButton = document.getElementById('editButton');
+    const submitButton = document.getElementById('submitButton');
 
-        // Mostrar el segundo formulario al presionar el botón "Siguiente"
-        document.querySelector('.btn-primary.btn-lg').addEventListener('click', function() {
-            if (validateForm()) {
-                pacienteForm.style.display = 'none';
-                formResponsable.style.display = 'block';
-            }
-        });
-
-        // Mostrar los campos adicionales si no es el paciente
-        esPacienteSelect.addEventListener('change', function() {
-            if (esPacienteSelect.value === 'no') {
-                extraFields.style.display = 'block';
-            } else {
-                extraFields.style.display = 'none';
-            }
-        });
-
-        // Mostrar la vista previa
-        document.getElementById('previewButton').addEventListener('click', function() {
-            if (validateForm()) {
-                populatePreview();
-                // Ocultar formulario y mostrar vista previa
-                document.getElementById('pacienteForm').style.display = 'none';
-                document.getElementById('responsableForm').style.display = 'none';
-                document.getElementById('previewDiv').style.display = 'block';
-            }
-        });
-
-    
-
-        editButton.addEventListener('click', function() {
-            // Mostrar formulario y ocultar vista previa
-            previewDiv.style.display = 'none';
-            pacienteForm.style.display = 'block';
-            formResponsable.style.display='block';
-        });
-
-        submitButton.addEventListener('click', function() {
-            if (validateForm()) {
-            pacienteForm.submit();
-            formResponsable.submit();
+    siguienteButton.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            completoForm.classList.add('hidden');
+            formResponsable.classList.remove('hidden');
+            previewDiv.classList.add('hidden');
         }
-
-        });
     });
+
+    previewButton.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            previewDiv.classList.remove('hidden');
+            formResponsable.classList.add('hidden');
+        }
+    });
+
+    editButton.addEventListener('click', function() {
+        previewDiv.classList.add('hidden');
+        formResponsable.classList.remove('hidden');
+    });
+
+    submitButton.addEventListener('click', function() {
+        if (validateForm()) {
+            document.getElementById('completoForm').submit();
+        }
+    });
+
+    esPacienteSelect.addEventListener('change', function() {
+        if (esPacienteSelect.value === 'si') {
+            extraFields.classList.add('hidden');
+        } else {
+            extraFields.classList.remove('hidden');
+        }
+    });
+});
+
 </script>
 
 {% endblock %}
