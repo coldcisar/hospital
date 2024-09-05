@@ -1,6 +1,6 @@
 
 from django.shortcuts import render,redirect
-from contacto_hospital.models import Pacientes,nuevoUsuario,Doctores
+from contacto_hospital.models import Paciente,nuevoUsuario,Doctores,Responsable
 from django.contrib import messages 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -14,14 +14,14 @@ def paginaAgregarD(request):
 def paginaAgregarP(request):
     return render(request, 'agregarP.html')
 
-
 @csrf_exempt
 def agregarP(request):
     if request.method == 'POST':
-        # Recibir los datos del formulario del paciente
+        # Datos del paciente
         nombre_completo = request.POST.get('nombre_completo')
+        print(f"Nombre completo: {nombre_completo}")
         nombre_social = request.POST.get('nombre_social', '')
-        edad = request.POST.get('edad')
+        edad = int(request.POST.get('edad')) if request.POST.get('edad') else None
         pais_nacimiento = request.POST.get('pais_nacimiento')
         region_zona_nacimiento = request.POST.get('region_zona_nacimiento', '')
         region_zona_residencia_actual = request.POST.get('region_zona_residencia_actual', '')
@@ -31,11 +31,14 @@ def agregarP(request):
         metodo_contacto_email = request.POST.get('metodo_contacto_email')
         tipo_documento_identidad = request.POST.get('tipo_documento_identidad')
         numero_documento_identidad = request.POST.get('numero_documento_identidad')
-        es_paciente = request.POST.get('es_paciente')
+    
+
+        # Datos del responsable
+        es_paciente = request.POST.get('es_paciente') == 'on'
         relacion = request.POST.get('relacion')
         nombre_completo_responsable = request.POST.get('nombre_completo_responsable')
         nombre_social_responsable = request.POST.get('nombre_social_responsable', '')
-        edad_responsable = request.POST.get('edad_responsable')
+        edad_responsable = int(request.POST.get('edad_responsable')) if request.POST.get('edad_responsable') else None
         pais_nacimiento_responsable = request.POST.get('pais_nacimiento_responsable')
         nacionalidad_responsable = request.POST.get('nacionalidad_responsable')
         idioma_responsable = request.POST.get('idioma_responsable')
@@ -43,19 +46,9 @@ def agregarP(request):
         metodo_contacto_email_responsable = request.POST.get('metodo_contacto_email_responsable')
         tipo_documento_identidad_responsable = request.POST.get('tipo_documento_identidad_responsable')
         numero_documento_identidad_responsable = request.POST.get('numero_documento_identidad_responsable')
-        paciente = Pacientes(
-            nombre_completo=nombre_completo,
-            nombre_social=nombre_social,
-            edad=edad,
-            pais_nacimiento=pais_nacimiento,
-            region_zona_nacimiento=region_zona_nacimiento,
-            region_zona_residencia_actual=region_zona_residencia_actual,
-            nacionalidad=nacionalidad,
-            idioma_hablado=idioma_hablado,
-            metodo_contacto_fono=metodo_contacto_fono,
-            metodo_contacto_email=metodo_contacto_email,
-            tipo_documento_identidad=tipo_documento_identidad,
-            numero_documento_identidad=numero_documento_identidad,
+
+        # Crear o recuperar responsable
+        responsable = Responsable.objects.create(
             es_paciente=es_paciente,
             relacion=relacion,
             nombre_completo_responsable=nombre_completo_responsable,
@@ -67,14 +60,37 @@ def agregarP(request):
             metodo_contacto_fono_responsable=metodo_contacto_fono_responsable,
             metodo_contacto_email_responsable=metodo_contacto_email_responsable,
             tipo_documento_identidad_responsable=tipo_documento_identidad_responsable,
-            numero_documento_identidad_responsable=numero_documento_identidad_responsable,
+            numero_documento_identidad_responsable=numero_documento_identidad_responsable
         )
-        paciente.save()
-   
+        responsable.save()
+
+        # Crear paciente y asociar responsable
+        try:
+            paciente = Paciente.objects.create(
+                nombre_completo=nombre_completo,
+                nombre_social=nombre_social,
+                edad=edad,
+                pais_nacimiento=pais_nacimiento,
+                region_zona_nacimiento=region_zona_nacimiento,
+                region_zona_residencia_actual=region_zona_residencia_actual,
+                nacionalidad=nacionalidad,
+                idioma_hablado=idioma_hablado,
+                metodo_contacto_fono=metodo_contacto_fono,
+                metodo_contacto_email=metodo_contacto_email,
+                tipo_documento_identidad=tipo_documento_identidad,
+                numero_documento_identidad=numero_documento_identidad,
+                responsable=responsable
+            )
+            paciente.save()
+        except Exception as e:
+            print(f"Error al crear el paciente: {e}")
+            return render(request, 'agregarP.html', {'error': 'Error al crear el paciente'})
+
         return redirect('list_paciente')
 
-    # Si no es un POST, renderizar la página del formulario
     return render(request, 'agregarP.html')
+
+
 
     
 def agregarD(request):
@@ -121,7 +137,7 @@ def cerrar_sesion(request):
 
 def list_paciente(request):
     template_name='paciente.html'
-    pacientes=Pacientes.objects.all()
+    pacientes=Paciente.objects.all()
     context={
         "pacientes": pacientes
     }
