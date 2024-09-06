@@ -263,11 +263,11 @@
                                 <input type="text" id="numero_documento_identidad_responsable" name="numero_documento_identidad_responsable" class="form-control" maxlength="25" required>
                                 <span id="numero_documento_identidad_responsable_error" class="text-danger"></span>
                             </div>
-        
+                        </div>
                             <div class="text-center">
                                 <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
               
@@ -354,36 +354,42 @@
         };
 
         // Validación de campos del responsable si están visibles
+        // Validación de campos del responsable si están visibles
         const formResponsable = document.getElementById('form_responsable');
-        if (formResponsable.classList.contains('hidden') === false) {
-            const responsibleFields = {
-                es_paciente:"Debe ingresar si es el paciente o no",
-                relacion:"Debe ingresar que tipo de relacion tiene con el paciente",
-                nombre_completo_responsable: "Debe ingresar el nombre completo del responsable.",
-                edad_responsable: "Debe ingresar la edad del responsable.",
-                pais_nacimiento_responsable: "Debe ingresar el país de nacimiento del responsable.",
-                nacionalidad_responsable: "Debe ingresar la nacionalidad del responsable.",
-                idioma_responsable: "Debe ingresar el idioma que habla el responsable.",
-                metodo_contacto_fono_responsable: "Debe ingresar un método de contacto (teléfono) del responsable.",
-                metodo_contacto_email_responsable: "Debe ingresar un email de contacto del responsable.",
-                tipo_documento_identidad_responsable: "Debe ingresar el tipo de documento de identidad del responsable.",
-                numero_documento_identidad_responsable: "Debe ingresar un número de documento de identidad del responsable."
-            };
+        const esPacienteField = document.getElementById('es_paciente');
 
-            Object.keys(responsibleFields).forEach(fieldId => {
-                let value = document.getElementById(fieldId);
-                let errorElement = document.getElementById(`${fieldId}_error`);
-                if (value && errorElement) {
-                    let fieldValue = value.value.trim();
-                    if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
-                        errorElement.innerText = responsibleFields[fieldId];
-                        isValid = false;
-                    } else {
-                        errorElement.innerText = "";
+        if (formResponsable.classList.contains('hidden') === false) {
+            // Solo validamos si el campo 'es_paciente' es falso
+            if (esPacienteField.value === "False") {
+                const responsibleFields = {
+                    relacion: "Debe ingresar qué tipo de relación tiene con el paciente.",
+                    nombre_completo_responsable: "Debe ingresar el nombre completo del responsable.",
+                    edad_responsable: "Debe ingresar la edad del responsable.",
+                    pais_nacimiento_responsable: "Debe ingresar el país de nacimiento del responsable.",
+                    nacionalidad_responsable: "Debe ingresar la nacionalidad del responsable.",
+                    idioma_responsable: "Debe ingresar el idioma que habla el responsable.",
+                    metodo_contacto_fono_responsable: "Debe ingresar un método de contacto (teléfono) del responsable.",
+                    metodo_contacto_email_responsable: "Debe ingresar un email de contacto del responsable.",
+                    tipo_documento_identidad_responsable: "Debe ingresar el tipo de documento de identidad del responsable.",
+                    numero_documento_identidad_responsable: "Debe ingresar un número de documento de identidad del responsable."
+                };
+
+                Object.keys(responsibleFields).forEach(fieldId => {
+                    let value = document.getElementById(fieldId);
+                    let errorElement = document.getElementById(`${fieldId}_error`);
+                    if (value && errorElement) {
+                        let fieldValue = value.value.trim();
+                        if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                            errorElement.innerText = responsibleFields[fieldId];
+                            isValid = false;
+                        } else {
+                            errorElement.innerText = "";
+                        }
                     }
-                }
-            });
+                });
+            }
         }
+
         console.log("Formulario válido:", isValid);
         return isValid;
     }
@@ -437,6 +443,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
     const siguienteButton = document.getElementById('siguienteButton');
+    const previewButton = document.getElementById('previewButton');
     const pacienteForm =document.getElementById('paciente_form')
     const completoForm = document.getElementById('completoForm');
     const formResponsable = document.getElementById('form_responsable');
@@ -471,14 +478,9 @@
     submitButton.addEventListener('click', function() {
         if (validateForm()) {
             document.getElementById('completoForm').submit();
-            //document.getElementById('responsableForm').submit();
         }
     });
-    //submitButton.addEventListener('click', function() {
-     //   if (validateForm()) {
-      //      document.getElementById('completoForm').submit();
-       // }
-    //});
+
 
     esPacienteSelect.addEventListener('change', function() {
         if (esPacienteSelect.value === 'True') {
