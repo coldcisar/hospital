@@ -31,7 +31,37 @@ def agregarP(request):
         metodo_contacto_email = request.POST.get('metodo_contacto_email')
         tipo_documento_identidad = request.POST.get('tipo_documento_identidad')
         numero_documento_identidad = request.POST.get('numero_documento_identidad')
-    
+        enfermedades_cronicas = request.POST.getlist('enfermedades_cronicas', [])
+        otras_enfermedades_cronicas = request.POST.get('otras_enfermedades_cronicas', '')
+        enfermedades_comunes = request.POST.getlist('enfermedades_comunes', [])
+        otras_enfermedades_comunes = request.POST.get('otras_enfermedades_comunes', '')
+        cirugias_comunes = request.POST.getlist('cirugias_comunes', [])
+        otras_cirugias_comunes = request.POST.get('otras_cirugias_comunes', '')
+        cirugias_traumatologicas = request.POST.getlist('cirugias_traumatologicas',[])
+        otras_cirugias_traumatologicas = request.POST.get('otras_cirugias_traumatologicas','')
+        farmacos_patologias_cronicas = request.POST.getlist('farmacos_patologias_cronicas',[])
+        otros_farmacos_patologias_cronicas = request.POST.get('otros_farmacos_patologias_cronicas','')
+        detalle_farmacos_cronicos=request.POST.get('detalle_farmacos_cronicos')
+        farmacos_no_cronicos = request.POST.getlist('farmacos_no_cronicos',[])
+        otros_farmacos_no_cronicos = request.POST.get('otros_farmacos_no_cronicos','')
+        detalle_farmacos_no_cronicos=request.POST.get('detalle_farmacos_no_cronicos')
+        alergias_farmacos = request.POST.getlist('alergias_farmacos',[])
+        otras_alergias_farmacos = request.POST.get('otras_alergias_farmacos','')
+        detalle_alergias_farmacos=request.POST.get('detalle_alergias_farmacos')
+        alergias_comunes = request.POST.getlist('alergias_comunes',[])
+        otras_alergias_comunes = request.POST.get('otras_alergias_comunes','')
+        detalle_alergias_no_farmacos=request.POST.get('detalle_alergias_no_farmacos')
+        otros_antecedentes=request.POST.get('otros_antecedentes')
+        
+        
+        enfermedades_cronicas_str = ', '.join(enfermedades_cronicas)
+        enfermedades_comunes_str = ', '.join(enfermedades_comunes)
+        cirugias_comunes_str = ', '.join(cirugias_comunes)
+        cirugias_traumatologicas_str = ', '.join(cirugias_traumatologicas)
+        farmacos_patologias_cronicas_str=', '.join(farmacos_patologias_cronicas)
+        farmacos_no_cronicos_str=', '.join(farmacos_no_cronicos)
+        alergias_farmacos_str=', '.join(alergias_farmacos)
+        alergias_comunes_str=', '.join(alergias_comunes)
 
         # Datos del responsable
         es_paciente = request.POST.get('es_paciente') == 'on'
@@ -60,7 +90,8 @@ def agregarP(request):
             metodo_contacto_fono_responsable=metodo_contacto_fono_responsable,
             metodo_contacto_email_responsable=metodo_contacto_email_responsable,
             tipo_documento_identidad_responsable=tipo_documento_identidad_responsable,
-            numero_documento_identidad_responsable=numero_documento_identidad_responsable
+            numero_documento_identidad_responsable=numero_documento_identidad_responsable,
+
         )
         responsable.save()
 
@@ -79,7 +110,29 @@ def agregarP(request):
                 metodo_contacto_email=metodo_contacto_email,
                 tipo_documento_identidad=tipo_documento_identidad,
                 numero_documento_identidad=numero_documento_identidad,
-                responsable=responsable
+                responsable=responsable,
+                enfermedades_cronicas=enfermedades_cronicas_str,
+                otras_enfermedades_cronicas=otras_enfermedades_cronicas,
+                enfermedades_comunes=enfermedades_comunes_str,
+                otras_enfermedades_comunes=otras_enfermedades_comunes,
+                cirugias_comunes=cirugias_comunes_str,
+                otras_cirugias_comunes=otras_cirugias_comunes,
+                cirugias_traumatologicas=cirugias_traumatologicas_str,
+                otras_cirugias_traumatologicas=otras_cirugias_traumatologicas,
+                farmacos_patologias_cronicas=farmacos_patologias_cronicas_str,
+                otros_farmacos_patologias_cronicas=otros_farmacos_patologias_cronicas,
+                detalle_farmacos_cronicos=detalle_farmacos_cronicos,
+                farmacos_no_cronicos=farmacos_no_cronicos_str,
+                otros_farmacos_no_cronicos=otros_farmacos_no_cronicos,
+                detalle_farmacos_no_cronicos=detalle_farmacos_no_cronicos,
+                alergias_farmacos=alergias_farmacos_str,
+                otras_alergias_farmacos=otras_alergias_farmacos,
+                detalle_alergias_farmacos=detalle_alergias_farmacos,
+                alergias_comunes=alergias_comunes_str,
+                otras_alergias_comunes=otras_alergias_comunes,
+                detalle_alergias_no_farmacos=detalle_alergias_no_farmacos,
+                otros_antecedentes=otros_antecedentes,
+
             )
             paciente.save()
         except Exception as e:

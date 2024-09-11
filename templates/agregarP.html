@@ -137,7 +137,7 @@
                 </div>
             
                     <!-- Formulario del Responsable -->
-                <div id="form_responsable" class="hidden">
+                    <div id="form_responsable" class="hidden">
                     <h2>Persona Responsable Médico Legal del Paciente, Acompañante</h2>
                     <p>
                         La figura del acompañante ya sea un familiar o no, adquiere una relevancia especial en el contexto de patologías complejas y/o múltiples...
@@ -265,10 +265,348 @@
                             </div>
                         </div>
                             <div class="text-center">
-                                <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                                <button type="button" id="siguienteResponsable" class="btn btn-primary btn-lg">Siguiente</button>
                             </div>
                         
                     </div>
+                    <div id="form_historial" class="hidden">
+                        <h1>HISTORIAL MÉDICO - ANTECEDENTES MÉDICOS</h1>
+                        <p>
+                            Comprender en detalle el historial médico y los antecedentes de un paciente, es una pieza clave en el diagnóstico y tratamiento de cualquier condición actual.
+                        </p>
+                        <p>
+                            Esta sección del formulario médico está diseñada para recopilar información exhaustiva sobre enfermedades previas, medicamentos, cirugías y otros procesos de salud que el paciente haya experimentado.
+                        </p>
+                        <p>
+                            Al completar esta sección con la mayor precisión y detalle posible, nos permite definir con mayor claridad qué sucede hoy y cómo podemos avanzar hacia un plan de tratamiento efectivo y seguro.
+                        </p>
+                        <p>
+                            <span>*</span> Indica obligatoriedad del ingreso de la información.
+                        </p>
+                        <div>
+                            <label for="enfermedades_cronicas">* ¿Tiene alguna de las siguientes condiciones? (enfermedades crónicas) <span>*</span></label><br>
+                            <input type="checkbox" id="enfermedades_cronicas_1" name="enfermedades_cronicas" value="Infarto al corazón"> Infarto al corazón<br>
+                            <input type="checkbox" id="enfermedades_cronicas_2" name="enfermedades_cronicas" value="Infarto cerebral"> Infarto cerebral<br>
+                            <input type="checkbox" id="enfermedades_cronicas_3" name="enfermedades_cronicas" value="Hipertensión arterial"> Hipertensión arterial<br>
+                            <input type="checkbox" id="enfermedades_cronicas_4" name="enfermedades_cronicas" value="Cardiopatía coronaria"> Cardiopatía coronaria<br>
+                            <input type="checkbox" id="enfermedades_cronicas_5" name="enfermedades_cronicas" value="Insuficiencia cardiaca"> Insuficiencia cardiaca<br>
+                            <input type="checkbox" id="enfermedades_cronicas_6" name="enfermedades_cronicas" value="Valvulopatías cardiacas"> Valvulopatías cardiacas<br>
+                            <input type="checkbox" id="enfermedades_cronicas_7" name="enfermedades_cronicas" value="Aneurismas"> Aneurismas<br>
+                            <input type="checkbox" id="enfermedades_cronicas_8" name="enfermedades_cronicas" value="Diabetes"> Diabetes<br>
+                            <input type="checkbox" id="enfermedades_cronicas_9" name="enfermedades_cronicas" value="Obesidad"> Obesidad<br>
+                            <input type="checkbox" id="enfermedades_cronicas_10" name="enfermedades_cronicas" value="Síndrome metabólico"> Síndrome metabólico<br>
+                            <input type="checkbox" id="enfermedades_cronicas_11" name="enfermedades_cronicas" value="EPOC"> EPOC<br>
+                            <input type="checkbox" id="enfermedades_cronicas_12" name="enfermedades_cronicas" value="Tabaquismo"> Tabaquismo<br>
+                            <input type="checkbox" id="enfermedades_cronicas_13" name="enfermedades_cronicas" value="Alcoholismo"> Alcoholismo<br>
+                            <input type="checkbox" id="enfermedades_cronicas_14" name="enfermedades_cronicas" value="Enfermedad renal crónica"> Enfermedad renal crónica<br>
+                            <input type="checkbox" id="enfermedades_cronicas_15" name="enfermedades_cronicas" value="Hemodiálisis"> Hemodiálisis<br>
+                            <input type="checkbox" id="enfermedades_cronicas_16" name="enfermedades_cronicas" value="Asma"> Asma<br>
+                            <input type="checkbox" id="enfermedades_cronicas_17" name="enfermedades_cronicas" value="Sida / VIH"> Sida / VIH<br>
+                            <input type="checkbox" id="enfermedades_cronicas_18" name="enfermedades_cronicas" value="Artritis / artrosis"> Artritis / artrosis<br>
+                            <input type="checkbox" id="enfermedades_cronicas_19" name="enfermedades_cronicas" value="Hernia del núcleo pulposo"> Hernia del núcleo pulposo<br>
+                            <input type="checkbox" id="enfermedades_cronicas_20" name="enfermedades_cronicas" value="Úlcera gástrica"> Úlcera gástrica<br>
+                            <input type="checkbox" id="enfermedades_cronicas_21" name="enfermedades_cronicas" value="Hipotiroidismo"> Hipotiroidismo<br>
+                            <input type="checkbox" id="enfermedades_cronicas_22" name="enfermedades_cronicas" value="Hipertiroidismo"> Hipertiroidismo<br>
+                            <input type="text" id="otras_enfermedades_cronicas" name="otras_enfermedades_cronicas" placeholder="Otras (25 caracteres máx.)" maxlength="25">
+                            <span id="enfermedades_cronicas_error" class="error"></span>
+                            <br>
+                        </div>
+                        <div>
+                            <label for="enfermedades_comunes">* ¿Tiene alguna de las siguientes condiciones? (enfermedades comunes) <span>*</span></label><br>
+                            <input type="checkbox" id="enfermedades_comunes_1" name="enfermedades_comunes" value="Colon irritable"> Colon irritable<br>
+                            <input type="checkbox" id="enfermedades_comunes_2" name="enfermedades_comunes" value="Cáncer"> Cáncer, de cualquier zona del cuerpo y de cualquier tipo<br>
+                            <input type="checkbox" id="enfermedades_comunes_3" name="enfermedades_comunes" value="Depresión, ansiedad"> Depresión, ansiedad<br>
+                            <input type="checkbox" id="enfermedades_comunes_4" name="enfermedades_comunes" value="Cefalea, dolor de cabeza"> Cefalea, dolor de cabeza<br>
+                            <input type="checkbox" id="enfermedades_comunes_5" name="enfermedades_comunes" value="Quistes ováricos, patología ovárica"> Quistes ováricos, patología ovárica<br>
+                            <input type="checkbox" id="enfermedades_comunes_6" name="enfermedades_comunes" value="Demencia"> Demencia de cualquier tipo, ALZ, etc<br>
+                            <input type="text" id="otras_enfermedades_comunes" name="otras_enfermedades_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25">
+                            <span id="enfermedades_comunes_error" class="error"></span>
+                            <br>
+                        </div>
+                        <div>
+                            <label for="cirugias_comunes">
+                                * ¿Ha tenido alguna de las siguientes cirugías? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="cirugia_colecisctomia" name="cirugias_comunes" value="Colecistectomía"> Colecistectomía (extracción de vesícula)<br>
+                            <input type="checkbox" id="cirugia_bariatrica" name="cirugias_comunes" value="Cirugía bariátrica"> Cirugía bariátrica<br>
+                            <input type="checkbox" id="cirugia_herniorrafia" name="cirugias_comunes" value="Herniorrafia"> Herniorrafia<br>
+                            <input type="checkbox" id="cirugia_toracica_oncologica" name="cirugias_comunes" value="Cirugía Torácica Oncológica"> Cirugía Torácica Oncológica<br>
+                            <input type="checkbox" id="cirugia_deformidades_torax" name="cirugias_comunes" value="Cirugía de las Deformidades del Tórax"> Cirugía de las Deformidades del Tórax<br>
+                            <input type="checkbox" id="cirugia_simpatica" name="cirugias_comunes" value="Cirugía del Simpático o Simpatectomía"> Cirugía del Simpático o Simpatectomía<br>
+                            <input type="checkbox" id="cirugia_tumores_mediastino" name="cirugias_comunes" value="Tumores de Mediastino"> Tumores de Mediastino<br>
+                            <input type="checkbox" id="cirugia_trasplante_pulmonar" name="cirugias_comunes" value="Trasplante Pulmonar"> Trasplante Pulmonar<br>
+                            <input type="checkbox" id="cirugia_apendicectomia" name="cirugias_comunes" value="Apendicectomía"> Apendicectomía<br>
+                            <input type="checkbox" id="cirugia_gastrectomia" name="cirugias_comunes" value="Gastrectomía por cáncer gástrico"> Gastrectomía por cáncer gástrico<br>
+                            <input type="checkbox" id="cirugia_pancreatectomia" name="cirugias_comunes" value="Pancreatectomía por cáncer de páncreas"> Pancreatectomía por cáncer de páncreas<br>
+                            <input type="checkbox" id="cirugia_cabeza_cuello_oncologica" name="cirugias_comunes" value="Cirugía de Cabeza y Cuello Oncológica"> Cirugía de Cabeza y Cuello Oncológica<br>
+                            <input type="checkbox" id="cirugia_lifting_cuello" name="cirugias_comunes" value="Lifting de Cuello (Cervicoplastía)"> Lifting de Cuello (Cervicoplastía)<br>
+                            <input type="checkbox" id="cirugia_tiroides" name="cirugias_comunes" value="Cirugía de Tiroides"> Cirugía de Tiroides<br>
+                            <input type="checkbox" id="cirugia_parotida" name="cirugias_comunes" value="Cirugía de Parótida"> Cirugía de Parótida<br>
+                            <input type="checkbox" id="cirugia_laringe" name="cirugias_comunes" value="Cirugía de Laringe"> Cirugía de Laringe<br>
+                            <input type="checkbox" id="cirugia_prostatectomia" name="cirugias_comunes" value="Prostatectomía"> Prostatectomía<br>
+                            <input type="checkbox" id="cirugia_calculos_renales" name="cirugias_comunes" value="Cirugía de cálculos renales"> Cirugía de cálculos renales<br>
+                            <input type="checkbox" id="cirugia_vasectomia" name="cirugias_comunes" value="Vasectomía"> Vasectomía<br>
+                            <input type="checkbox" id="cirugia_vejiga" name="cirugias_comunes" value="Cirugía para el cáncer de vejiga"> Cirugía para el cáncer de vejiga<br>
+                            <input type="checkbox" id="cirugia_reconstructiva_urogenital" name="cirugias_comunes" value="Cirugía reconstructiva urogenital"> Cirugía reconstructiva urogenital<br>
+                            <input type="checkbox" id="cirugia_cesarea" name="cirugias_comunes" value="Cesárea"> Cesárea<br>
+                            <input type="checkbox" id="cirugia_histerectomia" name="cirugias_comunes" value="Histerectomía"> Histerectomía<br>
+                            <input type="checkbox" id="cirugia_laparoscopia_ginecologica" name="cirugias_comunes" value="Laparoscopía Ginecológica"> Laparoscopía Ginecológica<br>
+                            <input type="checkbox" id="cirugia_prolapso_pelviano" name="cirugias_comunes" value="Cirugía de Prolapso Pelviano"> Cirugía de Prolapso Pelviano<br>
+                            <input type="checkbox" id="cirugia_oncologica_ginecologica" name="cirugias_comunes" value="Cirugía Oncológica Ginecológica"> Cirugía Oncológica Ginecológica<br>
+                            <input type="checkbox" id="cirugia_coronaria" name="cirugias_comunes" value="Cirugía Coronaria"> Cirugía Coronaria<br>
+                            <input type="checkbox" id="cirugia_valvular" name="cirugias_comunes" value="Cirugía Valvular"> Cirugía Valvular<br>
+                            <input type="checkbox" id="cirugia_aorta_toracica" name="cirugias_comunes" value="Cirugía de la Aorta Torácica"> Cirugía de la Aorta Torácica<br>
+                            <input type="checkbox" id="cirugia_cardiopatias_congenitas" name="cirugias_comunes" value="Cardiopatías Congénitas del Adulto"> Cardiopatías Congénitas del Adulto<br>
+                            <input type="checkbox" id="cirugia_arritmias" name="cirugias_comunes" value="Cirugía de Arritmias"> Cirugía de Arritmias<br>
+                            <input type="checkbox" id="cirugia_tumores_cardiacos" name="cirugias_comunes" value="Tumores Cardíacos"> Tumores Cardíacos<br>
+                            <input type="checkbox" id="cirugia_trasplante_cardiaco" name="cirugias_comunes" value="Trasplante Cardíaco y Corazón Artificial"> Trasplante Cardíaco y Corazón Artificial<br>
+                            <input type="checkbox" id="cirugia_procedimientos_endovasculares" name="cirugias_comunes" value="Procedimientos Endovasculares"> Procedimientos Endovasculares<br>
+                            <input type="checkbox" id="cirugia_tratamiento_varices" name="cirugias_comunes" value="Tratamiento de Várices"> Tratamiento de Várices<br>
+                            <input type="checkbox" id="cirugia_manejo_patologia_aortica" name="cirugias_comunes" value="Manejo de Patología Aórtica"> Manejo de Patología Aórtica<br>
+                            <input type="checkbox" id="cirugia_enfermedad_arterial_oclusiva" name="cirugias_comunes" value="Enfermedad Arterial Oclusiva"> Enfermedad Arterial Oclusiva<br>
+                            <input type="checkbox" id="cirugia_accesos_vasculares_hemodialisis" name="cirugias_comunes" value="Accesos Vasculares para Hemodiálisis"> Accesos Vasculares para Hemodiálisis<br>
+                            <input type="checkbox" id="cirugia_prevencion_tratamiento_enfermedad_tromboembolica" name="cirugias_comunes" value="Prevención y Tratamiento de la Enfermedad Tromboembólica"> Prevención y Tratamiento de la Enfermedad Tromboembólica<br>
+                            <input type="checkbox" id="cirugia_cancer_piel" name="cirugias_comunes" value="Cirugía del cáncer de piel"> Cirugía del cáncer de piel<br>
+                            <input type="checkbox" id="cirugia_lunares" name="cirugias_comunes" value="Cirugía de Lunares (Nevos)"> Cirugía de Lunares (Nevos)<br>
+                            <input type="checkbox" id="cirugia_unas" name="cirugias_comunes" value="Cirugía de uñas"> Cirugía de uñas<br>
+                            <input type="checkbox" id="cirugia_extirpacion_lesiones_cutaneas" name="cirugias_comunes" value="Extirpación de lesiones cutáneas benignas"> Extirpación de lesiones cutáneas benignas<br>
+                            <input type="checkbox" id="cirugia_inyeccion_queloides" name="cirugias_comunes" value="Inyección intracutánea de queloides"> Inyección intracutánea de queloides<br>
+                            <input type="checkbox" id="cirugia_biopsias_piel" name="cirugias_comunes" value="Biopsias de piel"> Biopsias de piel<br>
+                            <input type="checkbox" id="cirugia_catarata" name="cirugias_comunes" value="Cirugía de Catarata"> Cirugía de Catarata<br>
+                            <input type="checkbox" id="cirugia_lasik" name="cirugias_comunes" value="Cirugía Lasik"> Cirugía Lasik<br>
+                            <input type="checkbox" id="cirugia_vitrectomia" name="cirugias_comunes" value="Vitrectomía"> Vitrectomía<br>
+                            <input type="checkbox" id="cirugia_pterigion" name="cirugias_comunes" value="Pterigión"> Pterigión<br>
+                            <input type="checkbox" id="cirugia_glaucoma" name="cirugias_comunes" value="Glaucoma"> Glaucoma<br>
+                            <input type="checkbox" id="cirugia_chalazion" name="cirugias_comunes" value="Chalazión"> Chalazión<br>
+                            <input type="checkbox" id="cirugia_blefarochalasis" name="cirugias_comunes" value="Blefarochalasis"> Blefarochalasis<br>
+                            <input type="checkbox" id="cirugia_crosslinking_queratocono" name="cirugias_comunes" value="Crosslinking - Queratocono"> Crosslinking - Queratocono<br>
+                            <input type="checkbox" id="cirugia_entropion" name="cirugias_comunes" value="Entropión"> Entropión<br>
+                            <input type="checkbox" id="cirugia_fotocoagulacion_retina" name="cirugias_comunes" value="Fotocoagulación de Retina"> Fotocoagulación de Retina<br>
+                            <input type="checkbox" id="cirugia_implante_lente_alta_miopia" name="cirugias_comunes" value="Implante de Lente Intraocular para Corrección de Alta Miopía"> Implante de Lente Intraocular para Corrección de Alta Miopía<br>
+                            <input type="text" id="otras_cirugias_comunes" name="otras_cirugias_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25">
+                            <span id="cirugias_comunes_error" class="error"></span>
+                            <br>
+                        </div>
+                        <div>
+                            <label for="cirugias_traumatologicas">
+                                * ¿Ha tenido alguna de las siguientes cirugías traumatológicas? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="colecistectomia" name="cirugias_traumatologicas" value="Colecistectomía"> Colecistectomía<br>
+                            <input type="checkbox" id="cirugias_bariatricas" name="cirugias_traumatologicas" value="Cirugías bariátricas"> Cirugías bariátricas<br>
+                            <input type="checkbox" id="herniorragia" name="cirugias_traumatologicas" value="Herniorrafia"> Herniorrafia<br>
+                            <input type="checkbox" id="cirugia_toracica_oncologica" name="cirugias_traumatologicas" value="Cirugía Torácica Oncológica"> Cirugía Torácica Oncológica<br>
+                            <input type="checkbox" id="cirugia_deformidades_torax" name="cirugias_traumatologicas" value="Cirugía de las Deformidades del Tórax"> Cirugía de las Deformidades del Tórax<br>
+                            <input type="checkbox" id="simpatectomia" name="cirugias_traumatologicas" value="Cirugía del Simpático o Simpatectomía"> Cirugía del Simpático o Simpatectomía<br>
+                            <input type="checkbox" id="tumores_mediastino" name="cirugias_traumatologicas" value="Tumores de Mediastino"> Tumores de Mediastino<br>
+                            <input type="checkbox" id="trasplante_pulmonar" name="cirugias_traumatologicas" value="Trasplante Pulmonar"> Trasplante Pulmonar<br>
+                            <input type="checkbox" id="apendicectomia" name="cirugias_traumatologicas" value="Apendicectomía"> Apendicectomía<br>
+                            <input type="checkbox" id="gastrectomia" name="cirugias_traumatologicas" value="Gastrectomía por cáncer gástrico"> Gastrectomía por cáncer gástrico<br>
+                            <input type="checkbox" id="pancreatectomia" name="cirugias_traumatologicas" value="Pancreatectomía por cáncer de páncreas"> Pancreatectomía por cáncer de páncreas<br>
+                            <input type="checkbox" id="cirugia_cabeza_cuello_oncologica" name="cirugias_traumatologicas" value="Cirugía de Cabeza y Cuello Oncológica"> Cirugía de Cabeza y Cuello Oncológica<br>
+                            <input type="checkbox" id="lifting_cuello" name="cirugias_traumatologicas" value="Lifting de Cuello (Cervicoplastía)"> Lifting de Cuello (Cervicoplastía)<br>
+                            <input type="checkbox" id="cirugia_tiroides" name="cirugias_traumatologicas" value="Cirugía de Tiroides"> Cirugía de Tiroides<br>
+                            <input type="checkbox" id="cirugia_parotida" name="cirugias_traumatologicas" value="Cirugía de Parótida"> Cirugía de Parótida<br>
+                            <input type="checkbox" id="cirugia_laringe" name="cirugias_traumatologicas" value="Cirugía de Laringe"> Cirugía de Laringe<br>
+                            <input type="checkbox" id="prostatectomia" name="cirugias_traumatologicas" value="Prostatectomía"> Prostatectomía<br>
+                            <input type="checkbox" id="cirugia_calculos_renales" name="cirugias_traumatologicas" value="Cirugía de cálculos renales"> Cirugía de cálculos renales<br>
+                            <input type="checkbox" id="vasectomia" name="cirugias_traumatologicas" value="Vasectomía"> Vasectomía<br>
+                            <input type="checkbox" id="cirugia_cancer_vejiga" name="cirugias_traumatologicas" value="Cirugía para el cáncer de vejiga"> Cirugía para el cáncer de vejiga<br>
+                            <input type="checkbox" id="cirugia_reconstructiva_urogenital" name="cirugias_traumatologicas" value="Cirugía reconstructiva urogenital"> Cirugía reconstructiva urogenital<br>
+                            <input type="checkbox" id="cesarea" name="cirugias_traumatologicas" value="Cesárea"> Cesárea<br>
+                            <input type="checkbox" id="histerectomia" name="cirugias_traumatologicas" value="Histerectomía"> Histerectomía<br>
+                            <input type="checkbox" id="laparoscopia_ginecologica" name="cirugias_traumatologicas" value="Laparoscopía Ginecológica"> Laparoscopía Ginecológica<br>
+                            <input type="checkbox" id="cirugia_prolapso_pelviano" name="cirugias_traumatologicas" value="Cirugía de Prolapso Pelviano"> Cirugía de Prolapso Pelviano<br>
+                            <input type="checkbox" id="cirugia_oncologica_ginecologica" name="cirugias_traumatologicas" value="Cirugía Oncológica Ginecológica"> Cirugía Oncológica Ginecológica<br>
+                            <input type="checkbox" id="cirugia_coronaria" name="cirugias_traumatologicas" value="Cirugía Coronaria"> Cirugía Coronaria<br>
+                            <input type="checkbox" id="cirugia_valvular" name="cirugias_traumatologicas" value="Cirugía Valvular"> Cirugía Valvular<br>
+                            <input type="checkbox" id="cirugia_aortica_toracica" name="cirugias_traumatologicas" value="Cirugía de la Aorta Torácica"> Cirugía de la Aorta Torácica<br>
+                            <input type="checkbox" id="cardiopatias_congenitas_adulto" name="cirugias_traumatologicas" value="Cardiopatías Congénitas del Adulto"> Cardiopatías Congénitas del Adulto<br>
+                            <input type="checkbox" id="cirugia_arritmias" name="cirugias_traumatologicas" value="Cirugía de Arritmias"> Cirugía de Arritmias<br>
+                            <input type="checkbox" id="tumores_cardiacos" name="cirugias_traumatologicas" value="Tumores Cardíacos"> Tumores Cardíacos<br>
+                            <input type="checkbox" id="trasplante_cardíaco" name="cirugias_traumatologicas" value="Trasplante Cardíaco"> Trasplante Cardíaco<br>
+                            <input type="checkbox" id="procedimientos_endovasculares" name="cirugias_traumatologicas" value="Procedimientos Endovasculares"> Procedimientos Endovasculares<br>
+                            <input type="checkbox" id="tratamiento_varices" name="cirugias_traumatologicas" value="Tratamiento de Várices"> Tratamiento de Várices<br>
+                            <input type="checkbox" id="manejo_pathologia_aortica" name="cirugias_traumatologicas" value="Manejo de Patología Aórtica"> Manejo de Patología Aórtica<br>
+                            <input type="checkbox" id="enfermedad_arterial_oclusiva" name="cirugias_traumatologicas" value="Enfermedad Arterial Oclusiva"> Enfermedad Arterial Oclusiva<br>
+                            <input type="checkbox" id="accesos_vasculares_hemodialisis" name="cirugias_traumatologicas" value="Accesos Vasculares para Hemodiálisis"> Accesos Vasculares para Hemodiálisis<br>
+                            <input type="checkbox" id="prevencion_tratamiento_enfermedad_tromboembolica" name="cirugias_traumatologicas" value="Prevención y Tratamiento de la Enfermedad Tromboembólica"> Prevención y Tratamiento de la Enfermedad Tromboembólica<br>
+                            <input type="checkbox" id="cirugia_cancer_piel" name="cirugias_traumatologicas" value="Cirugía del cáncer de piel"> Cirugía del cáncer de piel<br>
+                            <input type="checkbox" id="cirugia_lunares" name="cirugias_traumatologicas" value="Cirugía de Lunares (Nevos)"> Cirugía de Lunares (Nevos)<br>
+                            <input type="checkbox" id="cirugia_unas" name="cirugias_traumatologicas" value="Cirugía de uñas"> Cirugía de uñas<br>
+                            <input type="checkbox" id="extirpacion_lesiones_cutaneas" name="cirugias_traumatologicas" value="Extirpación de lesiones cutáneas benignas"> Extirpación de lesiones cutáneas benignas<br>
+                            <input type="checkbox" id="inyeccion_queloides" name="cirugias_traumatologicas" value="Inyección intracutánea de queloides"> Inyección intracutánea de queloides<br>
+                            <input type="checkbox" id="biopsias_piel" name="cirugias_traumatologicas" value="Biopsias de piel"> Biopsias de piel<br>
+                            <input type="checkbox" id="cirugia_catarata" name="cirugias_traumatologicas" value="Cirugía de Catarata"> Cirugía de Catarata<br>
+                            <input type="checkbox" id="cirugia_lasik" name="cirugias_traumatologicas" value="Cirugía Lasik"> Cirugía Lasik<br>
+                            <input type="checkbox" id="vitrectomia" name="cirugias_traumatologicas" value="Vitrectomía"> Vitrectomía<br>
+                            <input type="checkbox" id="pterigion" name="cirugias_traumatologicas" value="Pterigión"> Pterigión<br>
+                            <input type="checkbox" id="glaucoma" name="cirugias_traumatologicas" value="Glaucoma"> Glaucoma<br>
+                            <input type="checkbox" id="chalazion" name="cirugias_traumatologicas" value="Chalazión"> Chalazión<br>
+                            <input type="checkbox" id="blefarochalasis" name="cirugias_traumatologicas" value="Blefarochalasis"> Blefarochalasis<br>
+                            <input type="checkbox" id="crosslinking_queratocono" name="cirugias_traumatologicas" value="Crosslinking - Queratocono"> Crosslinking - Queratocono<br>
+                            <input type="checkbox" id="entropion" name="cirugias_traumatologicas" value="Entropión"> Entropión<br>
+                            <input type="checkbox" id="fotocoagulacion_retina" name="cirugias_traumatologicas" value="Fotocoagulación de Retina"> Fotocoagulación de Retina<br>
+                            <input type="checkbox" id="implante_lente_alta_miopia" name="cirugias_traumatologicas" value="Implante de Lente Intraocular para Corrección de Alta Miopía"> Implante de Lente Intraocular para Corrección de Alta Miopía<br>
+                            <input type="text" id="otras_cirugias_traumatologicas" name="otras_cirugias_traumatologicas" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+                            <!--<div id="otras_cirugias_container" style="display:none;">-->
+                             <!--   <label for="otras_cirugias_traumatologicas">Especifique otras cirugías traumatológicas:</label>-->
+                              <!--  <input type="text" id="otras_cirugias_traumatologicas" name="otras_cirugias_traumatologicas" maxlength="25">-->
+                            <!--</div>-->
+                        </div>
+                        
+                        
+                        <div>
+                            <label for="farmacos_patologias_cronicas">
+                                * ¿Qué fármacos utiliza para patologías crónicas? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="losartan" name="farmacos_patologias_cronicas" value="Losartán"> Losartán<br>
+                            <input type="checkbox" id="enalapril" name="farmacos_patologias_cronicas" value="Enalapril"> Enalapril<br>
+                            <input type="checkbox" id="metformina" name="farmacos_patologias_cronicas" value="Metformina"> Metformina<br>
+                            <input type="checkbox" id="atorvastatina" name="farmacos_patologias_cronicas" value="Atorvastatina"> Atorvastatina<br>
+                            <input type="checkbox" id="insulina" name="farmacos_patologias_cronicas" value="Insulina"> Insulina<br>
+                            <input type="checkbox" id="amlodipino" name="farmacos_patologias_cronicas" value="Amlodipino"> Amlodipino<br>
+                            <input type="checkbox" id="salbutamol" name="farmacos_patologias_cronicas" value="Salbutamol"> Salbutamol<br>
+                            <input type="checkbox" id="omeprazol" name="farmacos_patologias_cronicas" value="Omeprazol"> Omeprazol<br>
+                            <input type="checkbox" id="levotiroxina" name="farmacos_patologias_cronicas" value="Levotiroxina"> Levotiroxina<br>
+                            <input type="checkbox" id="glibenclamida" name="farmacos_patologias_cronicas" value="Glibenclamida"> Glibenclamida<br>
+                            <input type="checkbox" id="ninguna" name="farmacos_patologias_cronicas" value="NINGUNA"> NINGUNA<br>
+                            <input type="text" id="otros_farmacos_patologias_cronicas" name="otros_farmacos_patologias_cronicas" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+                            <!--<div id="otros_farmacos_container" style="display:none;">
+                               <label for="otros_farmacos_patologias_cronicas">Especifique otros fármacos utilizados para patologías crónicas:</label>
+                               <input type="text" id="otros_farmacos_patologias_cronicas" name="otros_farmacos_patologias_cronicas" maxlength="25">
+                            </div>-->
+                        </div>
+                
+                        
+                
+                        <!-- Fármacos Crónicos -->
+                        <div>
+                            <label for="detalle_farmacos_cronicos">
+                                * Escriba en detalle todos los fármacos productos que consume con regularidad / CRONICOS (sea a diario o al menos 1 vez por semana). Incluya el nombre comercial, la droga o fármaco que contiene, la dosis, el horario y la fecha aproximada desde cuando lo utiliza (basta con el año o el mes de inicio): <span>*</span>
+                            </label><br>
+                            <textarea id="detalle_farmacos_cronicos" name="detalle_farmacos_cronicos" maxlength="25" placeholder="Escriba aquí (25 caracteres máx.)"></textarea>
+                            <span id="farmacos_cronicos_detalle_error" class="error"></span>
+                        </div>
+                        <br>
+                
+                        <!-- Fármacos No Crónicos Más Usados en Chile -->
+                        <div>
+                            <label for="farmacos_no_cronicos">
+                                * ¿Qué fármacos usa (no crónicos)? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="paracetamol" name="farmacos_no_cronicos" value="Paracetamol"> Paracetamol<br>
+                            <input type="checkbox" id="ibuprofeno" name="farmacos_no_cronicos" value="Ibuprofeno"> Ibuprofeno<br>
+                            <input type="checkbox" id="ketorolaco" name="farmacos_no_cronicos" value="Ketorolaco"> Ketorolaco<br>
+                            <input type="checkbox" id="clorfenamina" name="farmacos_no_cronicos" value="Clorfenamina"> Clorfenamina<br>
+                            <input type="checkbox" id="diclofenaco" name="farmacos_no_cronicos" value="Diclofenaco"> Diclofenaco<br>
+                            <input type="checkbox" id="loperamida" name="farmacos_no_cronicos" value="Loperamida"> Loperamida<br>
+                            <input type="checkbox" id="famotidina" name="farmacos_no_cronicos" value="Famotidina"> Famotidina<br>
+                            <input type="checkbox" id="naproxeno" name="farmacos_no_cronicos" value="Naproxeno"> Naproxeno<br>
+                            <input type="checkbox" id="acido_mefenamico" name="farmacos_no_cronicos" value="Ácido Mefenámico"> Ácido Mefenámico<br>
+                            <input type="checkbox" id="ciprofloxacina" name="farmacos_no_cronicos" value="Ciprofloxacina"> Ciprofloxacina<br>
+                            <input type="checkbox" id="ninguna" name="farmacos_no_cronicos" value="NINGUNA"> NINGUNA<br>
+                            <input type="text" id="otros_farmacos_no_cronicos" name="otros_farmacos_no_cronicos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+                            <!--<div id="otros_farmacos_container" style="display:none;">
+                                <label for="otros_farmacos_no_cronicos">Especifique otros fármacos (no crónicos):</label>
+                                <input type="text" id="otros_farmacos_no_cronicos" name="otros_farmacos_no_cronicos" maxlength="25">
+                            </div>-->
+                        </div>
+                
+                        <br>
+                
+                        <!-- Fármacos No Crónicos Detalle -->
+                        <div>
+                            <label for="detalle_farmacos_no_cronicos">
+                                * Escriba en detalle todos los fármacos productos que consume NO CRONICOS. Incluya el nombre comercial, la droga o fármaco que contiene, la dosis, el horario y la fecha aproximada desde cuando lo utiliza (basta con el año o el mes de inicio): <span>*</span>
+                            </label><br>
+                            <textarea id="detalle_farmacos_no_cronicos" name="detalle_farmacos_no_cronicos" maxlength="25" placeholder="Escriba aquí (25 caracteres máx.)"></textarea>
+                            <span id="farmacos_no_cronicos_detalle_error" class="error"></span>
+                        </div>
+                        <br>
+                
+                        <!-- Alergias a Fármacos -->
+                        <div>
+                            <label for="alergias_farmacos">
+                                * ¿Tiene alergia a alguno de los siguientes fármacos? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="penicilina" name="alergias_farmacos" value="Penicilina"> Penicilina<br>
+                            <input type="checkbox" id="aine" name="alergias_farmacos" value="Antiinflamatorios no esteroidales (AINEs)"> Antiinflamatorios no esteroidales (AINEs)<br>
+                            <input type="checkbox" id="anestecicos" name="alergias_farmacos" value="Anestésicos locales y generales"> Anestésicos locales y generales<br>
+                            <input type="checkbox" id="medios_contraste" name="alergias_farmacos" value="Medios de contraste radiológicos"> Medios de contraste radiológicos<br>
+                            <input type="checkbox" id="anticonvulsivantes" name="alergias_farmacos" value="Anticonvulsivantes"> Anticonvulsivantes<br>
+                            <input type="checkbox" id="betalactamicos" name="alergias_farmacos" value="Betalactámicos"> Betalactámicos<br>
+                            <input type="checkbox" id="cefalosporinas" name="alergias_farmacos" value="Cefalosporinas"> Cefalosporinas<br>
+                            <input type="checkbox" id="sulfas" name="alergias_farmacos" value="Sulfas"> Sulfas<br>
+                            <input type="checkbox" id="aspirina" name="alergias_farmacos" value="Aspirina"> Aspirina<br>
+                            <input type="checkbox" id="dipirona" name="alergias_farmacos" value="Dipirona"> Dipirona<br>
+                            <input type="checkbox" id="ninguna" name="alergias_farmacos" value="NINGUNA"> NINGUNA<br>
+                            <input type="text" id="otras_alergias_farmacos" name="otras_alergias_farmacos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+
+                            <!--<div id="otros_alergias_container" style="display:none;">
+                                <label for="otras_alergias_farmacos">Especifique otras alergias a fármacos:</label>
+                                <input type="text" id="otras_alergias_farmacos" name="otras_alergias_farmacos" maxlength="25">
+                            </div>-->
+                        </div>
+                
+                        <!-- Reacción a Alergias a Fármacos -->
+                        <div>
+                            <label for="detalle_alergias_farmacos">
+                                * Describa en detalle cuál fue la reacción al o los fármacos, que describió como "alergia": <span>*</span>
+                            </label><br>
+                            <textarea id="detalle_alergias_farmacos" name="detalle_alergias_farmacos" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
+                            <span id="reaccion_alergias_farmacos_error" class="error"></span>
+                        </div>
+                        <br>
+                
+                        <!-- Alergias Comunes (No Fármacos) -->
+                        <div>
+                            <label for="alergias_comunes">
+                                * ¿Tiene alergia a alguno de los siguientes? <span>*</span>
+                            </label><br>
+                            <input type="checkbox" id="polenes" name="alergias_comunes" value="Pólenes"> Pólenes<br>
+                            <input type="checkbox" id="pastos" name="alergias_comunes" value="Pastos"> Pastos<br>
+                            <input type="checkbox" id="malezas" name="alergias_comunes" value="Malezas"> Malezas<br>
+                            <input type="checkbox" id="arboles" name="alergias_comunes" value="Árboles"> Árboles<br>
+                            <input type="checkbox" id="hongos" name="alergias_comunes" value="Hongos ambientales"> Hongos ambientales<br>
+                            <input type="checkbox" id="acaros" name="alergias_comunes" value="Ácaros como dermatofagoides"> Ácaros como dermatofagoides<br>
+                            <input type="checkbox" id="alimentos" name="alergias_comunes" value="Alimentos"> Alimentos<br>
+                            <input type="checkbox" id="picaduras" name="alergias_comunes" value="Picaduras de abejas/avispas"> Picaduras de abejas/avispas<br>
+                            <input type="checkbox" id="polvo" name="alergias_comunes" value="Polvo"> Polvo<br>
+                            <input type="checkbox" id="animales" name="alergias_comunes" value="Animales domésticos"> Animales domésticos<br>
+                            <input type="text" id="otras_alergias_comunes" name="otras_alergias_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+                           <!-- <div id="otras_alergias_container" style="display:none;">
+                                <label for="otras_alergias_comunes">Especifique otras alergias:</label>
+                                <input type="text" id="otras_alergias_comunes" name="otras_alergias_comunes" maxlength="25">
+                            </div>
+                        </div>-->
+                
+                        <!-- Reacción a Alergias Comunes -->
+                        <div>
+                            <label for="detalle_alergias_no_farmacos">
+                                * Describa en detalle cuál fue la reacción, que describió como "alergia", en la pregunta anterior: <span>*</span>
+                            </label><br>
+                            <textarea id="detalle_alergias_no_farmacos" name="detalle_alergias_no_farmacos" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
+                            <span id="reaccion_alergias_comunes_error" class="error"></span>
+                        </div>
+                        <br>
+                
+                        <!-- Otros Antecedentes -->
+                        <div>
+                            <label for="otros_antecedentes">
+                                * ¿Tiene usted algún otro antecedente que sea importante agregar? Toda información, por pequeña que sea, es potencialmente importante: <span>*</span>
+                            </label><br>
+                            <textarea id="otros_antecedentes" name="otros_antecedentes" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
+                            <span id="otros_antecedentes_error" class="error"></span>
+                        </div>
+                        <br>
+                
+                        <!-- Continuar -->
+                        <div>
+                            <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                        </div>
+                    </div>
+                        
+
                 </div>
               
             
@@ -304,6 +642,20 @@
                         <p><strong>Método de Contacto Responsable (email):</strong> <span id="preview_metodo_contacto_email_responsable"></span></p>
                         <p><strong>Tipo de Documento de Identidad(Responsable):</strong> <span id="preview_tipo_documento_identidad_responsable"></span></p>
                         <p><strong>Número de Documento de Identidad(Responsable):</strong> <span id="preview_numero_documento_identidad_responsable"></span></p>
+                        <p><strong>Condiciones Cronicas:</strong> <span id="preview_condiciones_cronicas"></span></p>
+                        <p><strong>Enfermedades Comunes:</strong> <span id="preview_enfermedades_comunes"></span></p>
+                        <p><strong>Cirugias Comunes:</strong> <span id="preview_cirugias_comunes"></span></p>
+                        <p><strong>Cirugias traumatologicas:</strong> <span id="preview_cirugias_traumatologicas"></span></p>
+                        <p><strong>Farmacos patologias cronicas:</strong> <span id="preview_farmacos_patologias_cronicas"></span></p>
+                        <p><strong>Farmacos cronicos detalles:</strong> <span id="preview_detalle_farmacos_cronicos"></span></p>
+                        <p><strong>Farmacos no cronicos:</strong> <span id="preview_farmacos_no_cronicos"></span></p>
+                        <p><strong>Farmacos no cronicos detalles:</strong> <span id="preview_detalle_farmacos_no_cronicos"></span></p>
+                        <p><strong>Alergias Farmacos:</strong> <span id="preview_alergias_farmacos"></span></p>
+                        <p><strong>Reaccion alergias farmacos:</strong> <span id="preview_detalle_alergias_farmacos"></span></p>
+                        <p><strong>Alergias Comunes:</strong> <span id="preview_alergias_comunes"></span></p>
+                        <p><strong>Reaccion alergias comunes:</strong> <span id="preview_detalle_alergias_no_farmacos"></span></p>
+                        <p><strong>Otros Antecedentes:</strong> <span id="preview_otros_antecedentes"></span></p>
+
                     </div>
                     <div class="text-center">
                         <button type="button" id="editButton" class="btn btn-secondary btn-lg">Editar</button>
@@ -344,7 +696,7 @@
             if (value && errorElement) {
                 let fieldValue = value.value.trim();
                 if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
-                    errorElement.innerText = fields[fieldId];
+                    errorElement.innerText = pacientefields[fieldId];
                     isValid = false;
                 } else {
                     errorElement.innerText = "";
@@ -354,10 +706,8 @@
         };
 
         // Validación de campos del responsable si están visibles
-        // Validación de campos del responsable si están visibles
         const formResponsable = document.getElementById('form_responsable');
         const esPacienteField = document.getElementById('es_paciente');
-
         if (formResponsable.classList.contains('hidden') === false) {
             // Solo validamos si el campo 'es_paciente' es falso
             if (esPacienteField.value === "False") {
@@ -372,26 +722,61 @@
                     metodo_contacto_email_responsable: "Debe ingresar un email de contacto del responsable.",
                     tipo_documento_identidad_responsable: "Debe ingresar el tipo de documento de identidad del responsable.",
                     numero_documento_identidad_responsable: "Debe ingresar un número de documento de identidad del responsable."
-                };
+            };
 
-                Object.keys(responsibleFields).forEach(fieldId => {
+        Object.keys(responsibleFields).forEach(fieldId => {
+            let value = document.getElementById(fieldId);
+            let errorElement = document.getElementById(`${fieldId}_error`);
+            if (value && errorElement) {
+                let fieldValue = value.value.trim();
+                if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                    errorElement.innerText = responsibleFields[fieldId];
+                    isValid = false;
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+                
+        })
+        };
+    }
+        const formHistorial = document.getElementById('form_historial');
+        if (formHistorial.classList.contains('hidden') === false) {
+            const formFields = {
+                condiciones_cronicas: "Debe ingresar lo solicitado.",
+                enfermedades_comunes: "Debe ingresar lo solicitado.",
+                cirugias_comunes: "Debe ingresar lo solicitado.",
+                cirugias_traumatologicas: "Debe ingresar lo solicitado.",
+                farmacos_patologias_cronicas: "Debe ingresar lo solicitado.",
+                detalle_farmacos_cronicos: "Debe ingresar lo solicitado.",
+                farmacos_no_cronicos: "Debe ingresar lo solicitado.",
+                detalle_farmacos_no_cronicos: "Debe ingresar lo solicitado.",
+                alergias_farmacos: "Debe ingresar lo solicitado.",
+                detalle_alergias_farmacos:"Debe ingresar lo solicitado",
+                alergias_comunes:"Debe ingresar lo solicitado",
+                detalle_alergias_no_farmacos:"Debe ingresar lo solicitado ",
+                otros_antecedentes:"Debe ingresar lo solicitado"
+            };
+
+                Object.keys(formFields).forEach(fieldId => {
                     let value = document.getElementById(fieldId);
                     let errorElement = document.getElementById(`${fieldId}_error`);
                     if (value && errorElement) {
                         let fieldValue = value.value.trim();
                         if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
-                            errorElement.innerText = responsibleFields[fieldId];
+                            errorElement.innerText = formFields[fieldId];
                             isValid = false;
                         } else {
                             errorElement.innerText = "";
                         }
                     }
-                });
-            }
-        }
+                })
+        };
+        
 
         console.log("Formulario válido:", isValid);
         return isValid;
+    
     }
 
     function populatePreview() {
@@ -439,12 +824,113 @@
             document.getElementById('preview_tipo_documento_identidad_responsable').innerText = 'N/A';
             document.getElementById('preview_numero_documento_identidad_responsable').innerText = 'N/A';
         }
+        
+        const formHistorial=document.getElementById('form_historial');
+        if(formHistorial.classList.contains('hidden')===false){
+            document.querySelectorAll('input[name="condiciones_cronicas"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="condiciones_cronicas"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('preview_condiciones_cronicas').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="enfermedades_comunes"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="enfermedades_comunes"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('enfermedades_comunes').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="cirugias_comunes"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="cirugias_comunes"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('cirugias_comunes').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="cirugias_traumatologicas"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="cirugias_traumatologicas"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('cirugias_traumatologicas').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="farmacos_patologias_cronicas"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="farmacos_patologias_cronicas"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('farmacos_patologias_cronicas').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="detalle_farmacos_cronicos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="detalle_farmacos_cronicos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('detalle_farmacos_cronicos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="farmacos_no_cronicos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="farmacos_no_cronicos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('farmacos_no_cronicos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="detalle_farmacos_no_cronicos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="detalle_farmacos_no_cronicos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('detalle_farmacos_no_cronicos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="alergias_farmacos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="alergias_farmacos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('alergias_farmacos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="detalle_alergias_farmacos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="detalle_alergias_farmacos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('detalle_alergias_farmacos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="alergias_comunes"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="alergias_comunes"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('alergias_comunes').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="detalle_alergias_no_farmacos"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="detalle_alergias_no_farmacos"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('detalle_alergias_no_farmacos').innerText = selectedValues.join(', ');
+            });
+            });
+            document.querySelectorAll('input[name="otros_antecedentes"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedCheckboxes = document.querySelectorAll('input[name="otros_antecedentes"]:checked');
+                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value);
+                document.getElementById('otros_antecedentes').innerText = selectedValues.join(', ');
+            });
+            });
+
+
+
+
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
     const siguienteButton = document.getElementById('siguienteButton');
+    const siguienteResponsable = document.getElementById('siguienteResponsable');
     const previewButton = document.getElementById('previewButton');
     const pacienteForm =document.getElementById('paciente_form')
+    const form_historial=document.getElementById('form_historial')
     const completoForm = document.getElementById('completoForm');
     const formResponsable = document.getElementById('form_responsable');
     const esPacienteSelect = document.getElementById('es_paciente');
@@ -461,18 +947,28 @@
             previewDiv.classList.add('hidden');
         }
     });
+    siguienteResponsable.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            pacienteForm.classList.add('hidden');
+            formResponsable.classList.add('hidden');
+            form_historial.classList.remove('hidden')
+            previewDiv.classList.add('hidden');
+        }
+    });
+
 
     previewButton.addEventListener('click', function() {
         if (validateForm()) {
             populatePreview();
             previewDiv.classList.remove('hidden');
-            formResponsable.classList.add('hidden');
+            form_historial.classList.add('hidden');
         }
     });
 
     editButton.addEventListener('click', function() {
         previewDiv.classList.add('hidden');
-        formResponsable.classList.remove('hidden');
+        form_historial.classList.remove('hidden');
     });
 
     submitButton.addEventListener('click', function() {
