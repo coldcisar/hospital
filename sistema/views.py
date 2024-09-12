@@ -52,6 +52,18 @@ def agregarP(request):
         otras_alergias_comunes = request.POST.get('otras_alergias_comunes','')
         detalle_alergias_no_farmacos=request.POST.get('detalle_alergias_no_farmacos')
         otros_antecedentes=request.POST.get('otros_antecedentes')
+        centro_salud_previo = request.POST.get('centro_salud_previo',[])
+        otro_centro_salud = request.POST.get('otro_centro_salud', '')
+        resolucion_problema_salud = request.POST.get('resolucion_problema_salud',[])
+        otro_resolucion_salud = request.POST.get('otro_resolucion_salud', '')
+        motivo_consulta = request.POST.getlist('motivo_consulta',[])
+        otros_motivos = request.POST.get('otros_motivos')
+        tiempo_sintomas = request.POST.get('tiempo_sintomas',[])
+        experimentado_problema_anteriormente = request.POST.get('experimentado_problema_anteriormente',[])
+        frecuencia_problema = request.POST.get('frecuencia_problema',[])
+        frecuencia_otros = request.POST.get('frecuencia_otros', '')
+        motivo_consulta_texto=request.POST.get('motivo_consulta_texto')
+
         
         
         enfermedades_cronicas_str = ', '.join(enfermedades_cronicas)
@@ -62,6 +74,9 @@ def agregarP(request):
         farmacos_no_cronicos_str=', '.join(farmacos_no_cronicos)
         alergias_farmacos_str=', '.join(alergias_farmacos)
         alergias_comunes_str=', '.join(alergias_comunes)
+        motivo_consulta_str = ', '.join(motivo_consulta)
+
+
 
         # Datos del responsable
         es_paciente = request.POST.get('es_paciente') == 'on'
@@ -132,6 +147,19 @@ def agregarP(request):
                 otras_alergias_comunes=otras_alergias_comunes,
                 detalle_alergias_no_farmacos=detalle_alergias_no_farmacos,
                 otros_antecedentes=otros_antecedentes,
+                motivo_consulta_texto=motivo_consulta_texto,
+                centro_salud_previo=centro_salud_previo,
+                otro_centro_salud=otro_centro_salud,
+                resolucion_problema_salud=resolucion_problema_salud,
+                otro_resolucion_salud=otro_resolucion_salud,
+                motivo_consulta=motivo_consulta_str,
+                otros_motivos=otros_motivos,
+                tiempo_sintomas=tiempo_sintomas,
+                experimentado_problema_anteriormente=experimentado_problema_anteriormente,
+                frecuencia_problema=frecuencia_problema,
+                frecuencia_otros=frecuencia_otros
+
+
 
             )
             paciente.save()

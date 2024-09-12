@@ -602,8 +602,183 @@
                 
                         <!-- Continuar -->
                         <div>
+                            <button type="button" id="siguienteAntecedentes" class="btn btn-primary btn-lg">Siguiente</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="form_evento" class="hidden">
+                        <h1>EVENTO O MOTIVO POR EL CUAL CONSULTA HOY A MÉDICO</h1>
+                        <p>
+                            La sección del Evento Actual, es una de las partes más críticas del formulario médico.
+                        </p>
+                        <p>
+                            Aquí es donde usted, como paciente y/o familiar responsable, tiene la oportunidad de describir con sus propias palabras el motivo principal de su consulta médica. 
+                            Esta narrativa personal es invaluable, ya que proporciona una visión directa de los síntomas que está experimentando, la gravedad de estos y cómo afectan su vida diaria.
+                        </p>
+                        <p>
+                            Detallar el evento actual permite a los profesionales médicos:
+
+                                Comprender la urgencia y la naturaleza inmediata de su situación.
+                                Establecer conexiones con su historial médico y antecedentes.
+                                Formular hipótesis diagnósticas más precisas y dirigidas.
+                                Priorizar exámenes y tratamientos según la información proporcionada
+                        </p>
+                        <p>
+                        <p>
+                            Es importante ser lo más claro y específico posible al describir el evento actual.
+
+                            Incluya cuándo comenzaron los síntomas, cómo han evolucionado y cualquier otro detalle que considere relevante.
+                            
+                            Su relato es fundamental para definir el curso de acción, asegurar una atención médica efectiva y centrada en usted.
+                            
+                        </p>
+                        <p>
+                            <span>*</span> Indica obligatoriedad del ingreso de la información.
+                        </p>
+                        <div>   
+                            <div>
+                                <label for="motivo_consulta_texto">
+                                    Motivo de Consulta a Urgencias: Antes de proceder con la consulta, es esencial que el médico comprenda claramente el motivo de su visita. 
+                                    Esta información es crucial para que el profesional pueda evaluar adecuadamente su situación y proporcionar el tratamiento más apropiado. 
+                                    Por favor, describa con detalle el motivo de su visita al médico hoy: (Ej. - "me duele la cabeza" o "me dijeron que podía tener cáncer, que hago?" "Me accidente") <span>*</span>
+                                </label><br>
+                                <textarea id="motivo_consulta_texto" name="motivo_consulta_texto" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
+                                <span id="otros_motivo_consulta_error" class="error"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <label>* ¿Acudió a su consultorio, SAPU, SAR u otro centro de salud, previo a esta consulta en urgencias del hospital hoy?</label><br>
+    
+                            <input type="radio" id="si" name="centro_salud_previo" value="Sí" required> 
+                            <label for="si">Sí</label><br>
+                            
+                            <input type="radio" id="no" name="centro_salud_previo" value="No" required> 
+                            <label for="no">No</label><br>
+                            <input type="text" id="otro_centro_salud" name="otro_centro_salud" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>   
+                            <!-- <input type="radio" id="otro" name="centro_salud_previo" value="Otro" required> 
+                            <label for="otro">Otro</label><br>-->
+                            
+                                
+                            <!-- Campo de texto para "Otro" que aparece solo si se selecciona "Otro" -->
+                            <!-- <div id="otro_centro_salud_container" style="display: none;">
+                            <label for="otro_centro_salud">Especifique otro centro de salud (25 caracteres máx.):</label>
+                            <input type="text" id="otro_centro_salud" name="otro_centro_salud" maxlength="25">
+                            </div><br>-->
+
+                        </div>
+                        <div>
+                            <label>* ¿Logró resolver, total o parcialmente, su problema de salud en el centro que acudió previamente?</label><br>
+                            <input type="radio" id="si" name="resolucion_problema_salud" value="Sí" required> 
+                            <label for="si">Sí</label><br>
+                            <input type="radio" id="no" name="resolucion_problema_salud" value="No" required> 
+                            <label for="no">No</label><br>
+                            <input type="radio" id="parcialmente" name="resolucion_problema_salud" value="Parcialmente" required> 
+                            <label for="parcialmente">Parcialmente</label><br>
+                            <!--<input type="radio" id="otro" name="resolucion_problema_salud" value="Otro" required> 
+                            <label for="otro">Otro</label><br>-->
+                            <input type="text" id="otro_resolucion_salud" name="otro_resolucion_salud" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+
+                            <!-- Campo de texto para "Otro" que aparece solo si se selecciona "Otro" -->
+                            <!--<div id="otro_resolucion_salud_container" style="display: none;">
+                                <label for="otro_resolucion_salud">Especifique otro (25 caracteres máx.):</label>
+                                <input type="text" id="otro_resolucion_salud" name="otro_resolucion_salud" maxlength="25">
+                            </div><br> -->
+
+                        </div>
+                        <div>
+                            <label>Motivo de consulta (seleccione uno o varios):</label><br>
+                            <input type="checkbox" id="dolor_abdominar_agudo" name="motivo_consulta" value="Dolor abdominal agudo (de inicio reciente)"> Dolor abdominal agudo (de inicio reciente)<br>
+                            <input type="checkbox" id="dolor_abdominar_cronico" name="motivo_consulta" value="Dolor abdominal crónico (de inicio antiguo)"> Dolor abdominal crónico (de inicio antiguo)<br>
+                            <input type="checkbox" id="dolor_toracico_agudo" name="motivo_consulta" value="Dolor torácico agudo (de inicio reciente)"> Dolor torácico agudo (de inicio reciente)<br>
+                            <input type="checkbox" id="dificultad_respiratoria" name="motivo_consulta" value="Dificultad respiratoria"> Dificultad respiratoria<br>
+                            <input type="checkbox" id="fiebre_alta" name="motivo_consulta" value="Fiebre alta (38,0 °)"> Fiebre alta (38,0 °)<br>
+                            <input type="checkbox" id="traumatismos" name="motivo_consulta" value="Traumatismos (caídas, golpes, agresiones)"> Traumatismos (caídas, golpes, agresiones)<br>
+                            <input type="checkbox" id="cefalea_intensa"name="motivo_consulta" value="Cefalea intensa (dolor de cabeza)"> Cefalea intensa (dolor de cabeza)<br>
+                            <input type="checkbox" id="sintomas_infeccion_urinaria" name="motivo_consulta" value="Síntomas de infección urinaria">Síntomas de infección urinaria<br>
+                            <input type="checkbox" id="crisis_hipertensa" name="motivo_consulta" value="Crisis hipertensiva (presión alta)"> Crisis hipertensiva (presión alta)<br>
+                            <input type="checkbox" id="sintomas_gastrointestinales" name="motivo_consulta"value="Síntomas gastrointestinales (nauseas, vómitos, dolor abdominal, diarrea, constipado, etc)"> Síntomas gastrointestinales (nauseas, vómitos, dolor abdominal, diarrea, constipado, etc)<br>
+                            <input type="checkbox" id="descompensacion_diabetes" name="motivo_consulta" value="Descompensación de diabetes (azúcar muy alta o muy baja)  "> Descompensación de diabetes (azúcar muy alta o muy baja)<br>
+                            <input type="checkbox" id="reacciones_alergicas" name="motivo_consulta" value="Reacciones alérgicas (lesiones rojizas en piel, picazón en una o varias zonas del cuerpo, falta de aire)"> Reacciones alérgicas (lesiones rojizas en piel, picazón en una o varias zonas del cuerpo, falta de aire)<br>
+                            <input type="checkbox" id="sintomas_enfermedades_cerebrovascular" name="motivo_consulta" value="Síntomas de enfermedad cerebrovascular (falta de fuerza 1 o varios brazos y/o piernas, cara diferente, dificultad al hablar, dificultad al entender, dificultad al moverse, inconciencia)">Síntomas de enfermedad cerebrovascular (falta de fuerza 1 o varios brazos y/o piernas, cara diferente, dificultad al hablar, dificultad al entender, dificultad al moverse, inconciencia)<br>
+                            <input type="checkbox" id="crisis_epilepticas" name="motivo_consulta" value="Crisis epilépticas (convulsiones)"> Crisis epilépticas (convulsiones)<br>
+                            <input type="checkbox" id="sintomas_infarto_miocardio" name="motivo_consulta" value="Síntomas de infarto de miocardio (dolor en el pecho)"> Síntomas de infarto de miocardio (dolor en el pecho)<br>
+                            <input type="checkbox" id="infecciones_respiratorias_agudas" name="motivo_consulta" value="Infecciones respiratorias agudas (tos, con o sin secreciones, falta de aire, dolor espalda)"> Infecciones respiratorias agudas (tos, con o sin secreciones, falta de aire, dolor espalda)<br>
+                            <input type="checkbox" id="intoxicaciones" name="motivo_consulta" value="Intoxicaciones (ingesta de fármacos alimentos que generan algún daño o problema)"> Intoxicaciones (ingesta de fármacos alimentos que generan algún daño o problema)<br>
+                            <input type="checkbox" id="heridas_laceraciones" name="motivo_consulta"v alue="Heridas y laceraciones (en cualquier parte del cuerpo)"> Heridas y laceraciones (en cualquier parte del cuerpo)<br>
+                            <input type="checkbox" id="quemaduras" name="motivo_consulta" value="Quemaduras (en cualquier parte del cuerpo)"> Quemaduras (en cualquier parte del cuerpo)<br>
+                            <input type="checkbox" id="mordeduras_animales" name="motivo_consulta"v alue="Mordeduras de animales (en cualquier parte del cuerpo)"> Mordeduras de animales (en cualquier parte del cuerpo)<br>
+                            <input type="checkbox" id="picaduras_insectos" name="motivo_consulta" value="Picaduras de insectos (en cualquier parte del cuerpo)"> Picaduras de insectos (en cualquier parte del cuerpo)<br>
+                            <input type="checkbox" id="accidentes_transito" name="motivo_consulta" value="Accidentes de tránsito (sea como chofer, acompañante, en moto, en bicicleta o peatón)"> Accidentes de tránsito (sea como chofer, acompañante, en moto, en bicicleta o peatón)<br>
+                            <input type="checkbox" id="problemas_psiquiatricos_agudos" name="motivo_consulta"value="Problemas psiquiátricos agudos (alucinaciones, esquizofrenia, ansiedad, lesiones en su propio cuerpo, lesiones a otros)"> Problemas psiquiátricos agudos (alucinaciones, esquizofrenia, ansiedad, lesiones en su propio cuerpo, lesiones a otros)<br>
+                            <input type="checkbox" id="sintomas_apendicitis" name="motivo_consulta" value="Síntomas de apendicitis (dolor en abdomen, zona derecha inferior)"> Síntomas de apendicitis (dolor en abdomen, zona derecha inferior)<br>
+                            <input type="checkbox" id="alteracion_estado_conciencia" name="motivo_consulta" value="Alteraciones del estado de conciencia (mareado, no reconoce, inconsciente)"> Alteraciones del estado de conciencia (mareado, no reconoce, inconsciente)<br>
+                            <input type="checkbox" id="dolor_lumbar_agudo" name="motivo_consulta" value="Dolor lumbar agudo"> Dolor lumbar agudo<br>
+                            <input type="checkbox" id="derivado_medico_extremo" name="motivo_consulta" value="Derivado por un médico externo (describir en OTROS el motivo)"> Derivado por un médico externo (describir en OTROS el motivo)<br>
+                            <input type="checkbox" id="accidente_trabajo" name="motivo_consulta" value="Accidente en el trabajo"> Accidente en el trabajo<br>
+                            <input type="checkbox" id="accidente_trayecto_trabajo" name="motivo_consulta" value="Accidente en trayecto hacia / desde el trabajo"> Accidente en trayecto hacia / desde el trabajo<br>
+                            <input type="checkbox" id="accidente_colegio" name="motivo_consulta" value="Accidente en el colegio o centro de estudios"> Accidente en el colegio o centro de estudios<br>
+                            <input type="checkbox" id="accidente_trayecto_colegio" name="motivo_consulta"value="Accidente en trayecto hacia / desde colegio o centro de estudios">Accidente en trayecto hacia / desde colegio o centro de estudios<br>
+                            <input type="text" id="otros_motivos" name="otros_motivos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+
+                            <!--<label for="otros_motivos">Especifique otros motivos:</label>
+                            <input type="text" id="otros_motivos" name="otros_motivos" maxlength="50"><br> -->
+                        </div>
+                        <div>
+                            <label>¿Cuándo comenzaron los síntomas?</label><br>
+                            <input type="radio" id="minutos" name="tiempo_sintomas" value="Minutos" required>
+                            <label for="minutos">Minutos</label><br>
+
+                            <input type="radio" id="horas" name="tiempo_sintomas" value="Horas">
+                            <label for="horas">Horas</label><br>
+
+                            <input type="radio" id="dias" name="tiempo_sintomas" value="Días">
+                            <label for="dias">Días</label><br>
+
+                            <input type="radio" id="semanas" name="tiempo_sintomas" value="Semanas">
+                            <label for="semanas">Semanas</label><br>
+
+                            <input type="radio" id="meses" name="tiempo_sintomas" value="Meses">
+                            <label for="meses">Meses</label><br>
+
+                            <input type="radio" id="anos" name="tiempo_sintomas" value="Años">
+                            <label for="anos">Años</label><br>
+                        </div>
+                        <div>
+                            <label>¿Ha experimentado este problema anteriormente?</label><br>
+                            <input type="radio" id="si" name="experimentado_problema_anteriormente" value="Sí" required>
+                            <label for="si">Sí</label><br>
+
+                            <input type="radio" id="no" name="experimentado_problema_anteriormente" value="No">
+                            <label for="no">No</label><br>
+                        </div>
+                        <div>
+                            <label>¿Con qué frecuencia ha experimentado este problema anteriormente?</label><br>
+                            <input type="radio" id="diaria" name="frecuencia_problema" value="Diaria" required>
+                            <label for="diaria">Diaria</label><br>
+                        
+                            <input type="radio" id="semanal" name="frecuencia_problema" value="Semanal">
+                            <label for="semanal">Semanal</label><br>
+                        
+                            <input type="radio" id="mensual" name="frecuencia_problema" value="Mensual">
+                            <label for="mensual">Mensual</label><br>
+                        
+                            <input type="radio" id="anual" name="frecuencia_problema" value="Anual">
+                            <label for="anual">Anual</label><br>
+                            <input type="text" id="frecuencia_otros" name="frecuencia_otros" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
+
+                            <!--<input type="radio" id="otros" name="frecuencia_problema" value="Otros">
+                            <label for="otros">Otros</label><br>
+                        
+                            <div id="frecuencia_otros_field" style="display:none;">
+                                <label for="frecuencia_otros">Especifique otros:</label>
+                                <input type="text" id="frecuencia_otros" name="frecuencia_otros" maxlength="50">
+                            </div>-->
+                        </div>
+                        <!-- Continuar -->
+                        <div>
                             <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
                         </div>
+
                     </div>
                         
 
@@ -654,7 +829,13 @@
                         <p><strong>Reaccion alergias farmacos:</strong> <span id="preview_detalle_alergias_farmacos"></span></p>
                         <p><strong>Alergias Comunes:</strong> <span id="preview_alergias_comunes"></span></p>
                         <p><strong>Reaccion alergias comunes:</strong> <span id="preview_detalle_alergias_no_farmacos"></span></p>
-                        <p><strong>Otros Antecedentes:</strong> <span id="preview_otros_antecedentes"></span></p>
+                        <p><strong>Motivo consulta:</strong> <span id="preview_motivo_consulta_texto"></span></p>
+                        <p><strong>Centro salud previo:</strong> <span id="preview_centro_salud_previo"></span></p>
+                        <p><strong>Resolvio su problema de salud :</strong> <span id="preview_resolucion_problema_salud"></span></p>
+                        <p><strong>Motivos consulta:</strong> <span id="preview_motivo_consulta"></span></p>
+                        <p><strong>Tiempo sintomas:</strong> <span id="preview_tiempo_sintomas"></span></p>
+                        <p><strong>Experimento este problema anteriormente:</strong> <span id="preview_experimentado_problema_anteriormente"></span></p>
+                        <p><strong>Frecuencia problema:</strong> <span id="preview_frecuencia_problema"></span></p>
 
                     </div>
                     <div class="text-center">
@@ -772,6 +953,32 @@
                     }
                 })
         };
+        const formAntecentes = document.getElementById('form_evento');
+        if (formAntecentes.classList.contains('hidden') === false) {
+            const formFields = {
+                motivo_consulta_texto: "Debe ingresar lo solicitado.",
+                centro_salud_previo: "Debe ingresar lo solicitado.",
+                resolucion_problema_salud: "Debe ingresar lo solicitado.",
+                motivo_consulta: "Debe ingresar lo solicitado.",
+                tiempo_sintomas: "Debe ingresar lo solicitado.",
+                experimentado_problema_anteriormente: "Debe ingresar lo solicitado.",
+                frecuencia_problema: "Debe ingresar lo solicitado.",
+            };
+
+                Object.keys(formFields).forEach(fieldId => {
+                    let value = document.getElementById(fieldId);
+                    let errorElement = document.getElementById(`${fieldId}_error`);
+                    if (value && errorElement) {
+                        let fieldValue = value.value.trim();
+                        if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                            errorElement.innerText = formFields[fieldId];
+                            isValid = false;
+                        } else {
+                            errorElement.innerText = "";
+                        }
+                    }
+                })
+        };
         
 
         console.log("Formulario válido:", isValid);
@@ -824,7 +1031,6 @@
             document.getElementById('preview_tipo_documento_identidad_responsable').innerText = 'N/A';
             document.getElementById('preview_numero_documento_identidad_responsable').innerText = 'N/A';
         }
-        
         const formHistorial=document.getElementById('form_historial');
         if(formHistorial.classList.contains('hidden')===false){
             document.querySelectorAll('input[name="condiciones_cronicas"]').forEach(checkbox => {
@@ -923,16 +1129,22 @@
 
 
         }
-    }
+
+
+
+        }
+    
 
     document.addEventListener('DOMContentLoaded', function() {
     const siguienteButton = document.getElementById('siguienteButton');
     const siguienteResponsable = document.getElementById('siguienteResponsable');
+    const siguienteAntecedentes=document.getElementById('siguienteAntecedentes')
     const previewButton = document.getElementById('previewButton');
-    const pacienteForm =document.getElementById('paciente_form')
-    const form_historial=document.getElementById('form_historial')
+    const pacienteForm =document.getElementById('paciente_form');
+    const form_historial=document.getElementById('form_historial');
     const completoForm = document.getElementById('completoForm');
     const formResponsable = document.getElementById('form_responsable');
+    const formAntecedentes=document.getElementById('form_evento');
     const esPacienteSelect = document.getElementById('es_paciente');
     const extraFields = document.getElementById('extra_fields');
     const previewDiv = document.getElementById('previewDiv');
@@ -952,8 +1164,19 @@
             populatePreview();
             pacienteForm.classList.add('hidden');
             formResponsable.classList.add('hidden');
-            form_historial.classList.remove('hidden')
+            form_historial.classList.remove('hidden');
             previewDiv.classList.add('hidden');
+        }
+    });
+    siguienteAntecedentes.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            pacienteForm.classList.add('hidden');
+            formResponsable.classList.add('hidden');
+            form_historial.classList.add('hidden');
+            formAntecedentes.classList.remove('hidden');
+            previewDiv.classList.add('hidden');
+            
         }
     });
 
@@ -963,6 +1186,7 @@
             populatePreview();
             previewDiv.classList.remove('hidden');
             form_historial.classList.add('hidden');
+            formAntecedentes.classList.add('hidden');
         }
     });
 
