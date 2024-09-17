@@ -829,7 +829,7 @@
                         </div>
     
                     </div>
-                    <div id="form_evento" class="">
+                    <div id="form_evento" class="hidden">
                         <h1>EVENTO O MOTIVO POR EL CUAL CONSULTA HOY A MÉDICO</h1>
                         <p>
                             La sección del Evento Actual, es una de las partes más críticas del formulario médico.
@@ -936,11 +936,11 @@
                             <input type="checkbox" id="accidente_trayecto_trabajo" name="motivo_consulta" value="Accidente en trayecto hacia / desde el trabajo"> Accidente en trayecto hacia / desde el trabajo<br>
                             <input type="checkbox" id="accidente_colegio" name="motivo_consulta" value="Accidente en el colegio o centro de estudios"> Accidente en el colegio o centro de estudios<br>
                             <input type="checkbox" id="accidente_trayecto_colegio" name="motivo_consulta"value="Accidente en trayecto hacia / desde colegio o centro de estudios">Accidente en trayecto hacia / desde colegio o centro de estudios<br>
-                            <input type="checkbox" id="otros_motivo_consulta" name="motivo_consulta" value="Otros"> Otros<br>
+                            <input type="checkbox" id="otros_motivos" name="motivo_consulta" value="Otros"> Otros<br>
                             <span id=""></span>
-                            <div id="otros_motivo_consulta_field" style="display: none;">
-                                <label for="otros_motivo_consulta">Especifique otros motivos (25 caracteres máx.):</label>
-                                <input type="text" id="otros_motivo_consulta" name="otro_resolucion_salud" maxlength="25">
+                            <div id="otros_motivos_field" style="display: none;">
+                                <label for="otros_motivos">Especifique otros motivos (25 caracteres máx.):</label>
+                                <input type="text" id="otros_motivos" name="motivo_consulta" maxlength="25">
                             </div><br>
                         </div>
                         <div>
@@ -1487,7 +1487,7 @@
     });
     document.querySelectorAll('input[name="motivo_consulta"]').forEach((elem) => {
         elem.addEventListener('change', function() {
-            const otrosField = document.getElementById('otros_motivo_consulta_field');
+            const otrosField = document.getElementById('otros_motivos_field');
             if (this.value === 'Otros') {
                 otrosField.style.display = 'block';
             } else {
