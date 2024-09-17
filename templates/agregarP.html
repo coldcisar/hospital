@@ -5,14 +5,173 @@
 
 
 <style>
-    .required-field::after {
+    required-field::after {
         content: "*";
         color: red;
     }
     .hidden {
         display: none;
     }
+    .preview-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #f0f4f7;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    }
 
+    h2 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 25px;
+    }
+    .preview-section {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-section h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #1e88e5;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    .preview-section p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #555;
+    }
+
+    .preview-section p strong {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .action-buttons {
+        margin-top: 20px;
+    }
+
+    .btn-lg {
+        font-size: 18px;
+        padding: 12px 25px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .hidden {
+        display: none;
+    }
+    .info-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+.info-header h2 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.info-header p {
+    font-size: 18px;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.info-content {
+    font-size: 16px;
+    color: #333;
+}
+
+.section-title {
+    font-size: 20px;
+    color: #17a2b8;
+    margin-top: 20px;
+}
+
+.section-list {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.section-list li {
+    margin-bottom: 10px;
+}
+
+.section-list li::before {
+    content: "🔹";
+    margin-right: 8px;
+    color: #28a745;
+}
+
+.section-list strong {
+    color: #007bff;
+}
+
+.text-center p {
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+}
+
+.btn-lg {
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+
+       
 </style>
 
 <div class="right_col" role="main">
@@ -23,8 +182,52 @@
 
               <form id="completoForm" method="post" action="{% url 'agregarP' %}">
                 {% csrf_token %}
-              <div id="paciente_form" >
-                <h2 class="tile-title text-center">Identificación del Paciente</h2>
+                <div id="general_form" class="info-container">
+                    <div class="info-header text-center">
+                        <h2>📝 FORMULARIO DE ADMISIÓN URGENCIA HOSPITAL DEL CARMEN MAIPU.</h2>
+                        <p class="mb-4">IMPORTANTE</p>
+                    </div>
+                
+                    <div class="info-content">
+                        <p>
+                            Antes de su consulta médica de urgencia, es fundamental que complete con precisión y detalle el siguiente formulario. Este documento es clave para una comunicación efectiva entre usted y su equipo de atención médica de emergencia, garantizando que se considere toda la información clínica relevante para brindarle la atención más adecuada y rápida posible.
+                        </p>
+                
+                        <h3 class="section-title">📋 Estructura del Formulario</h3>
+                        <ol class="section-list">
+                            <li><strong>Identificación del Paciente:</strong> Proporcione sus datos personales para que podamos registrar su historial médico y tratamientos bajo su nombre único.</li>
+                            <li><strong>Identificación del Familiar o Acompañante Responsable:</strong> En caso de que necesite apoyo, es crucial tener los detalles de un contacto de emergencia o acompañante.</li>
+                            <li><strong>Antecedentes Médicos del Paciente:</strong> Informe sobre sus historiales médicos, incluyendo alergias, medicaciones y cirugías anteriores, para evitar interacciones peligrosas y comprender su estado de salud actual.</li>
+                            <li><strong>El Evento Médico Actual:</strong> Describa con claridad el motivo de su consulta, incluyendo síntomas y su duración, para priorizar su atención médica.</li>
+                            <li><strong>Consentimiento Médico Legal:</strong> Confirme que comprende los procedimientos propuestos y está de acuerdo con los posibles cursos de acción.</li>
+                            <li><strong>Espacio para Preguntas:</strong> Anote cualquier duda que pueda tener antes de la consulta de urgencia.</li>
+                        </ol>
+                
+                        <h3 class="section-title">📧 Ingreso de Correo Electrónico</h3>
+                        <p>
+                            Por favor ingrese su correo electrónico, al cual será enviada una copia del formulario cuando sea enviado al equipo de atención médica.
+                        </p>
+                        <div class="form-group">
+                            <label for="email_input">Ingrese su correo electrónico:</label>
+                            <input type="email" id="email" class="form-control" placeholder="example@domain.com" required>
+                            <span id="email_error" class="error-message hidden">Por favor, ingrese un correo electrónico válido.</span>
+                        </div>
+                
+                        <h3 class="section-title">⚠️ Información Final</h3>
+                        <p>
+                            Completar este formulario es un paso crítico y requiere su atención inmediata. Cada sección tiene un propósito específico y proporcionar información detallada garantiza una atención más precisa y efectiva. Dedique el tiempo necesario para responder con precisión.
+                        </p>
+                        <p class="text-center"><strong>¡Estamos aquí para asistirle de manera urgente y eficiente!</strong></p>
+                    </div>
+                
+                    <div class="text-center mt-4">
+                        <button type="button" id="siguienteButtonGeneral" class="btn btn-primary btn-lg">Continuar</button>
+                    </div>
+                </div>
+                
+                
+              <div id="paciente_form" class="hidden">
+                 <h2 class="tile-title text-center">Identificación del Paciente</h2>
                 <p class="text-center mb-4">
                     La identificación precisa del paciente es un pilar fundamental en la prestación de atención médica...
                 </p>
@@ -307,7 +510,11 @@
                             <input type="checkbox" id="enfermedades_cronicas_20" name="enfermedades_cronicas" value="Úlcera gástrica"> Úlcera gástrica<br>
                             <input type="checkbox" id="enfermedades_cronicas_21" name="enfermedades_cronicas" value="Hipotiroidismo"> Hipotiroidismo<br>
                             <input type="checkbox" id="enfermedades_cronicas_22" name="enfermedades_cronicas" value="Hipertiroidismo"> Hipertiroidismo<br>
-                            <input type="text" id="otras_enfermedades_cronicas" name="otras_enfermedades_cronicas" placeholder="Otras (25 caracteres máx.)" maxlength="25">
+                            <input type="checkbox" id="otras_enfermedades_cronicas" name="enfermedades_cronicas" value="Otros"> Otros<br>
+                            <div id="otras_enfermedades_cronicas_field" style="display:none;">
+                                <label for="otras_enfermedades_cronicas">Especifique otras Enfermedades Cronicas:</label>
+                                <input type="text" id="otras_enfermedades_cronicas" name="otras_enfermedades_cronicas" maxlength="25">
+                            </div>
                             <span id="enfermedades_cronicas_error" class="error"></span>
                             <br>
                         </div>
@@ -319,9 +526,13 @@
                             <input type="checkbox" id="enfermedades_comunes_4" name="enfermedades_comunes" value="Cefalea, dolor de cabeza"> Cefalea, dolor de cabeza<br>
                             <input type="checkbox" id="enfermedades_comunes_5" name="enfermedades_comunes" value="Quistes ováricos, patología ovárica"> Quistes ováricos, patología ovárica<br>
                             <input type="checkbox" id="enfermedades_comunes_6" name="enfermedades_comunes" value="Demencia"> Demencia de cualquier tipo, ALZ, etc<br>
-                            <input type="text" id="otras_enfermedades_comunes" name="otras_enfermedades_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25">
-                            <span id="enfermedades_comunes_error" class="error"></span>
+                            <input type="checkbox" id="otras_enfermedades_comunes" name="enfermedades_comunes" value="Otros"> Otros<br>
+                            <div id="otras_enfermedades_comunes_field" style="display:none;">
+                             <label for="otras_enfermedades_comunes_field">Especifique otras Enfermedades Comunes</label>
+                            <input type="text" id="otras_enfermedades_comunes" name="otras_enfermedades_comunes" maxlength="25">
+                            </div>
                             <br>
+                            <span id="enfermedades_comunes_error" class="error"></span>
                         </div>
                         <div>
                             <label for="cirugias_comunes">
@@ -383,7 +594,11 @@
                             <input type="checkbox" id="cirugia_entropion" name="cirugias_comunes" value="Entropión"> Entropión<br>
                             <input type="checkbox" id="cirugia_fotocoagulacion_retina" name="cirugias_comunes" value="Fotocoagulación de Retina"> Fotocoagulación de Retina<br>
                             <input type="checkbox" id="cirugia_implante_lente_alta_miopia" name="cirugias_comunes" value="Implante de Lente Intraocular para Corrección de Alta Miopía"> Implante de Lente Intraocular para Corrección de Alta Miopía<br>
-                            <input type="text" id="otras_cirugias_comunes" name="otras_cirugias_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25">
+                            <input type="checkbox" id="otras_cirugias_comunes" name="cirugias_comunes" value="Otros"> Otros<br>
+                            <div id="otras_cirugias_comunes_field" style="display:none;">
+                                <label for="otras_cirugias_comunes">Especifique otras cirugías comunes</label>
+                                <input type="text" id="otras_cirugias_comunes" name="otras_cirugias_comunes" maxlength="25">
+                            </div>
                             <span id="cirugias_comunes_error" class="error"></span>
                             <br>
                         </div>
@@ -447,11 +662,12 @@
                             <input type="checkbox" id="entropion" name="cirugias_traumatologicas" value="Entropión"> Entropión<br>
                             <input type="checkbox" id="fotocoagulacion_retina" name="cirugias_traumatologicas" value="Fotocoagulación de Retina"> Fotocoagulación de Retina<br>
                             <input type="checkbox" id="implante_lente_alta_miopia" name="cirugias_traumatologicas" value="Implante de Lente Intraocular para Corrección de Alta Miopía"> Implante de Lente Intraocular para Corrección de Alta Miopía<br>
-                            <input type="text" id="otras_cirugias_traumatologicas" name="otras_cirugias_traumatologicas" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-                            <!--<div id="otras_cirugias_container" style="display:none;">-->
-                             <!--   <label for="otras_cirugias_traumatologicas">Especifique otras cirugías traumatológicas:</label>-->
-                              <!--  <input type="text" id="otras_cirugias_traumatologicas" name="otras_cirugias_traumatologicas" maxlength="25">-->
-                            <!--</div>-->
+                            <input type="checkbox" id="otras_cirugias_traumatologicas" name="cirugias_traumatologicas" value="Otros"> Otros<br>
+                            <div id="otras_cirugias_traumatologicas_field" style="display:none;">
+                             <label for="otras_cirugias_traumatologicas">Especifique otras cirugías traumatológicas:</label>
+                                <input type="text" id="otras_cirugias_traumatologicas" name="otras_cirugias_traumatologicas" maxlength="25">
+                            </div>
+                            <span id="cirugias_traumatologicas_error" class="error"></span>
                         </div>
                         
                         
@@ -470,11 +686,13 @@
                             <input type="checkbox" id="levotiroxina" name="farmacos_patologias_cronicas" value="Levotiroxina"> Levotiroxina<br>
                             <input type="checkbox" id="glibenclamida" name="farmacos_patologias_cronicas" value="Glibenclamida"> Glibenclamida<br>
                             <input type="checkbox" id="ninguna" name="farmacos_patologias_cronicas" value="NINGUNA"> NINGUNA<br>
-                            <input type="text" id="otros_farmacos_patologias_cronicas" name="otros_farmacos_patologias_cronicas" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-                            <!--<div id="otros_farmacos_container" style="display:none;">
+                            <input type="checkbox" id="otros_farmacos_patologias_cronicas" name="farmacos_patologias_cronicas" value="Otros"> Otros<br>
+
+                            <div id="otros_farmacos_patologias_cronicas_field" style="display:none;">
                                <label for="otros_farmacos_patologias_cronicas">Especifique otros fármacos utilizados para patologías crónicas:</label>
                                <input type="text" id="otros_farmacos_patologias_cronicas" name="otros_farmacos_patologias_cronicas" maxlength="25">
-                            </div>-->
+                            </div>
+                            <span id="farmacos_patologias_cronicas_error" class="error"></span>
                         </div>
                 
                         
@@ -485,7 +703,7 @@
                                 * Escriba en detalle todos los fármacos productos que consume con regularidad / CRONICOS (sea a diario o al menos 1 vez por semana). Incluya el nombre comercial, la droga o fármaco que contiene, la dosis, el horario y la fecha aproximada desde cuando lo utiliza (basta con el año o el mes de inicio): <span>*</span>
                             </label><br>
                             <textarea id="detalle_farmacos_cronicos" name="detalle_farmacos_cronicos" maxlength="25" placeholder="Escriba aquí (25 caracteres máx.)"></textarea>
-                            <span id="farmacos_cronicos_detalle_error" class="error"></span>
+                            <span id="detalle_farmacos_cronicos_error" class="error"></span>
                         </div>
                         <br>
                 
@@ -505,11 +723,12 @@
                             <input type="checkbox" id="acido_mefenamico" name="farmacos_no_cronicos" value="Ácido Mefenámico"> Ácido Mefenámico<br>
                             <input type="checkbox" id="ciprofloxacina" name="farmacos_no_cronicos" value="Ciprofloxacina"> Ciprofloxacina<br>
                             <input type="checkbox" id="ninguna" name="farmacos_no_cronicos" value="NINGUNA"> NINGUNA<br>
-                            <input type="text" id="otros_farmacos_no_cronicos" name="otros_farmacos_no_cronicos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-                            <!--<div id="otros_farmacos_container" style="display:none;">
+                            <input type="checkbox" id="otros_farmacos_no_cronicos" name="farmacos_no_cronicos" value="Otros"> Otros<br>
+                            <div id="otros_farmacos_no_cronicos_field" style="display:none;">
                                 <label for="otros_farmacos_no_cronicos">Especifique otros fármacos (no crónicos):</label>
                                 <input type="text" id="otros_farmacos_no_cronicos" name="otros_farmacos_no_cronicos" maxlength="25">
-                            </div>-->
+                            </div>
+                            <span id="farmacos_no_cronicos_error" class="error"></span>
                         </div>
                 
                         <br>
@@ -520,7 +739,7 @@
                                 * Escriba en detalle todos los fármacos productos que consume NO CRONICOS. Incluya el nombre comercial, la droga o fármaco que contiene, la dosis, el horario y la fecha aproximada desde cuando lo utiliza (basta con el año o el mes de inicio): <span>*</span>
                             </label><br>
                             <textarea id="detalle_farmacos_no_cronicos" name="detalle_farmacos_no_cronicos" maxlength="25" placeholder="Escriba aquí (25 caracteres máx.)"></textarea>
-                            <span id="farmacos_no_cronicos_detalle_error" class="error"></span>
+                            <span id="detalle_farmacos_no_cronicos_error" class="error"></span>
                         </div>
                         <br>
                 
@@ -540,12 +759,13 @@
                             <input type="checkbox" id="aspirina" name="alergias_farmacos" value="Aspirina"> Aspirina<br>
                             <input type="checkbox" id="dipirona" name="alergias_farmacos" value="Dipirona"> Dipirona<br>
                             <input type="checkbox" id="ninguna" name="alergias_farmacos" value="NINGUNA"> NINGUNA<br>
-                            <input type="text" id="otras_alergias_farmacos" name="otras_alergias_farmacos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-
-                            <!--<div id="otros_alergias_container" style="display:none;">
+                            <input type="checkbox" id="otras_alergias_farmacos" name="alergias_farmacos" value="Otros"> Otros<br>
+                            <div id="otras_alergias_farmacos_field" style="display:none;">
                                 <label for="otras_alergias_farmacos">Especifique otras alergias a fármacos:</label>
                                 <input type="text" id="otras_alergias_farmacos" name="otras_alergias_farmacos" maxlength="25">
-                            </div>-->
+                            </div>
+                            <span id="alergias_farmacos_error" class="error"></span>
+
                         </div>
                 
                         <!-- Reacción a Alergias a Fármacos -->
@@ -554,7 +774,7 @@
                                 * Describa en detalle cuál fue la reacción al o los fármacos, que describió como "alergia": <span>*</span>
                             </label><br>
                             <textarea id="detalle_alergias_farmacos" name="detalle_alergias_farmacos" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
-                            <span id="reaccion_alergias_farmacos_error" class="error"></span>
+                            <span id="detalle_alergias_farmacos_error" class="error"></span>
                         </div>
                         <br>
                 
@@ -573,11 +793,14 @@
                             <input type="checkbox" id="picaduras" name="alergias_comunes" value="Picaduras de abejas/avispas"> Picaduras de abejas/avispas<br>
                             <input type="checkbox" id="polvo" name="alergias_comunes" value="Polvo"> Polvo<br>
                             <input type="checkbox" id="animales" name="alergias_comunes" value="Animales domésticos"> Animales domésticos<br>
-                            <input type="text" id="otras_alergias_comunes" name="otras_alergias_comunes" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-                           <!-- <div id="otras_alergias_container" style="display:none;">
+                            <input type="checkbox" id="otras_alergias_comunes" name="alergias_comunes" value="Otros"> Otros<br>
+
+                           
+                            <div id="otras_alergias_comunes_field" style="display:none;">
                                 <label for="otras_alergias_comunes">Especifique otras alergias:</label>
                                 <input type="text" id="otras_alergias_comunes" name="otras_alergias_comunes" maxlength="25">
-                            </div>-->
+                            </div>
+                            <span id="alergias_comunes_error" class="error"></span>
                         </div>
                 
                         <!-- Reacción a Alergias Comunes -->
@@ -586,7 +809,7 @@
                                 * Describa en detalle cuál fue la reacción, que describió como "alergia", en la pregunta anterior: <span>*</span>
                             </label><br>
                             <textarea id="detalle_alergias_no_farmacos" name="detalle_alergias_no_farmacos" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
-                            <span id="reaccion_alergias_comunes_error" class="error"></span>
+                            <span id="detalle_alergias_comunes_error" class="error"></span>
                         </div>
                         <br>
                 
@@ -606,7 +829,7 @@
                         </div>
     
                     </div>
-                    <div id="form_evento" class="hidden">
+                    <div id="form_evento" class="">
                         <h1>EVENTO O MOTIVO POR EL CUAL CONSULTA HOY A MÉDICO</h1>
                         <p>
                             La sección del Evento Actual, es una de las partes más críticas del formulario médico.
@@ -642,7 +865,7 @@
                                     Esta información es crucial para que el profesional pueda evaluar adecuadamente su situación y proporcionar el tratamiento más apropiado. 
                                     Por favor, describa con detalle el motivo de su visita al médico hoy: (Ej. - "me duele la cabeza" o "me dijeron que podía tener cáncer, que hago?" "Me accidente") <span>*</span>
                                 </label><br>
-                                <textarea id="motivo_consulta_texto" name="motivo_consulta_texto" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)"></textarea>
+                                <textarea id="motivo_consulta_texto" name="motivo_consulta_texto" maxlength="60" placeholder="Escriba aquí (60 caracteres máx.)" required></textarea>
                                 <span id="otros_motivo_consulta_error" class="error"></span>
                             </div>
                         </div>
@@ -654,16 +877,14 @@
                             
                             <input type="radio" id="no" name="centro_salud_previo" value="No" required> 
                             <label for="no">No</label><br>
-                            <input type="text" id="otro_centro_salud" name="otro_centro_salud" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>   
-                            <!-- <input type="radio" id="otro" name="centro_salud_previo" value="Otro" required> 
-                            <label for="otro">Otro</label><br>-->
+                            <input type="radio" id="otro_centro_salud" name="centro_salud_previo" value="Otros"> Otros<br>
                             
                                 
                             <!-- Campo de texto para "Otro" que aparece solo si se selecciona "Otro" -->
-                            <!-- <div id="otro_centro_salud_container" style="display: none;">
+                            <div id="otro_centro_salud_field" style="display: none;">
                             <label for="otro_centro_salud">Especifique otro centro de salud (25 caracteres máx.):</label>
                             <input type="text" id="otro_centro_salud" name="otro_centro_salud" maxlength="25">
-                            </div><br>-->
+                            </div><br>
 
                         </div>
                         <div>
@@ -674,15 +895,12 @@
                             <label for="no">No</label><br>
                             <input type="radio" id="parcialmente" name="resolucion_problema_salud" value="Parcialmente" required> 
                             <label for="parcialmente">Parcialmente</label><br>
-                            <!--<input type="radio" id="otro" name="resolucion_problema_salud" value="Otro" required> 
-                            <label for="otro">Otro</label><br>-->
-                            <input type="text" id="otro_resolucion_salud" name="otro_resolucion_salud" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-
+                            <input type="radio" id="otro_resolucion_salud" name="resolucion_problema_salud" value="Otros"> Otros<br>
                             <!-- Campo de texto para "Otro" que aparece solo si se selecciona "Otro" -->
-                            <!--<div id="otro_resolucion_salud_container" style="display: none;">
+                            <div id="otro_resolucion_salud_field" style="display: none;">
                                 <label for="otro_resolucion_salud">Especifique otro (25 caracteres máx.):</label>
                                 <input type="text" id="otro_resolucion_salud" name="otro_resolucion_salud" maxlength="25">
-                            </div><br> -->
+                            </div><br>
 
                         </div>
                         <div>
@@ -718,10 +936,12 @@
                             <input type="checkbox" id="accidente_trayecto_trabajo" name="motivo_consulta" value="Accidente en trayecto hacia / desde el trabajo"> Accidente en trayecto hacia / desde el trabajo<br>
                             <input type="checkbox" id="accidente_colegio" name="motivo_consulta" value="Accidente en el colegio o centro de estudios"> Accidente en el colegio o centro de estudios<br>
                             <input type="checkbox" id="accidente_trayecto_colegio" name="motivo_consulta"value="Accidente en trayecto hacia / desde colegio o centro de estudios">Accidente en trayecto hacia / desde colegio o centro de estudios<br>
-                            <input type="text" id="otros_motivos" name="otros_motivos" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
-
-                            <!--<label for="otros_motivos">Especifique otros motivos:</label>
-                            <input type="text" id="otros_motivos" name="otros_motivos" maxlength="50"><br> -->
+                            <input type="checkbox" id="otros_motivo_consulta" name="motivo_consulta" value="Otros"> Otros<br>
+                            <span id=""></span>
+                            <div id="otros_motivo_consulta_field" style="display: none;">
+                                <label for="otros_motivo_consulta">Especifique otros motivos (25 caracteres máx.):</label>
+                                <input type="text" id="otros_motivo_consulta" name="otro_resolucion_salud" maxlength="25">
+                            </div><br>
                         </div>
                         <div>
                             <label>¿Cuándo comenzaron los síntomas?</label><br>
@@ -764,22 +984,157 @@
                         
                             <input type="radio" id="anual" name="frecuencia_problema" value="Anual">
                             <label for="anual">Anual</label><br>
-                            <input type="text" id="frecuencia_otros" name="frecuencia_otros" placeholder="Otras (25 caracteres máx.)" maxlength="25"><br>
 
-                            <!--<input type="radio" id="otros" name="frecuencia_problema" value="Otros">
-                            <label for="otros">Otros</label><br>
+                            <input type="radio" id="otro_frecuencia" name="frecuencia_problema" value="Otros"> Otros<br>
                         
-                            <div id="frecuencia_otros_field" style="display:none;">
-                                <label for="frecuencia_otros">Especifique otros:</label>
-                                <input type="text" id="frecuencia_otros" name="frecuencia_otros" maxlength="50">
-                            </div>-->
+                            <div id="otro_frecuencia_field" style="display:none;">
+                                <label for="otro_frecuencia">Especifique otros:</label>
+                                <input type="text" id="otro_frecuencia" name="otro_frecuencia" maxlength="50">
+                            </div>
                         </div>
                         <!-- Continuar -->
                         <div>
-                            <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                            <button type="button" id="siguienteEvento" class="btn btn-primary btn-lg">Siguiente</button>
                         </div>
 
                     </div>
+                    <div id="responsabilidad_form" class="hidden preview-container">
+                        <h2 class="form-title">Consideraciones del Formulario</h2>
+                        
+                        <!-- Descargo de Responsabilidad Legal -->
+                        <div class="form-section">
+                            <h3 class="section-title">* Descargo de Responsabilidad Legal:</h3>
+                            <p class="section-description">
+                                La integridad y exactitud de la información que usted proporciona en este formulario son de suma importancia.
+                                Al completarlo, usted asume la responsabilidad de que todos los datos sean veraces y completos.
+                                Es crucial entender que cualquier dato falso, incompleto o alterado, así como la omisión de información relevante, podría resultar en la exención de responsabilidad médico-legal para los profesionales y la institución que le brinden atención.
+                                Este descargo de responsabilidad legal no es solo una formalidad; es una salvaguarda para usted y para el equipo médico.
+                                Asegura que las decisiones de salud se basen en información fidedigna y permite que la atención que recibe sea la más adecuada para su situación.
+                                Recuerde: Una vez completado el formulario, se le enviará una copia a su correo electrónico. Es su obligación revisarla cuidadosamente y comunicar de inmediato cualquier discrepancia o error a la institución médica.
+                                La transparencia y la precisión en este proceso son fundamentales para su seguridad y bienestar.
+                            </p>
+                            <div class="radio-group">
+                                <input type="radio" id="acepto" name="descargo_responsabilidad" value="Acepto" required>
+                                <label for="descargo_acepto">Acepto</label>
+                                <input type="radio" id="rechazo" name="descargo_responsabilidad" value="Rechazo" required>
+                                <label for="descargo_rechazo">Rechazo</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Consentimiento para Procedimientos Diagnósticos y Tratamientos -->
+                        <div class="form-section">
+                            <h3 class="section-title">* Consentimiento para Procedimientos Diagnósticos y Tratamientos:</h3>
+                            <p class="section-description">
+                                Esta sección del formulario es crucial, ya que aquí usted da su autorización para que se realicen procedimientos esenciales que contribuyen al proceso de diagnóstico y tratamiento.
+                                Al firmar, usted permite que el equipo médico lleve a cabo exámenes de laboratorio, procedimientos diagnósticos, imágenes y otras acciones clínicas necesarias durante su atención.
+                                Es importante que comprenda que tiene el derecho de aceptar o rechazar cualquier procedimiento. Su decisión es respetada y fundamental para el proceso de atención médica.
+                                Sin embargo, es esencial reconocer que la negativa a procedimientos recomendados puede influir en la capacidad del equipo médico para proporcionarle el mejor cuidado posible.
+                                Al otorgar su consentimiento, usted juega un papel activo en su atención médica, asegurando que los procedimientos se realicen con su pleno conocimiento y acuerdo. Este consentimiento es una declaración de su comprensión y voluntad de participar en su plan de tratamiento.
+                            </p>
+                            <div class="radio-group">
+                                <input type="radio" id="acepto" name="consentimiento_procedimientos" value="Acepto" required>
+                                <label for="procedimientos_acepto">Acepto</label>
+                                <input type="radio" id="rechazo" name="consentimiento_procedimientos" value="Rechazo" required>
+                                <label for="procedimientos_rechazo">Rechazo</label>
+                            </div>
+                        </div>
+                    
+                        <!-- Autorización para el Uso de Información Clínica -->
+                        <div class="form-section">
+                            <h3 class="section-title">* Autorización para el Uso de Información Clínica:</h3>
+                            <p class="section-description">
+                                Al proporcionar su consentimiento en esta sección, usted juega un papel crucial en el avance de la medicina y la mejora de los servicios de salud.
+                                Su autorización permite que la información clínica obtenida durante su atención médica sea utilizada responsablemente para propósitos que van más allá de su caso individual, incluyendo la investigación, la educación y el análisis estadístico.
+                                Es fundamental que comprenda que:
+                                Su identidad y datos personales serán manejados con la máxima confidencialidad. La información no será compartida con terceros fuera de la institución sanitaria.
+                                Se aplicarán medidas para proteger su anonimato y privacidad, asegurando que su información personal no sea identificable en publicaciones o resultados divulgados.
+                                El consentimiento que otorga es un soporte vital para el desarrollo continuo de prácticas médicas basadas en evidencia y para la formación de futuros profesionales de la salud.
+                                Al mismo tiempo, se garantiza que su información se trate con el respeto y la protección que merece, conforme a las leyes de protección de datos.
+                            </p>
+                            <div class="radio-group">
+                                <input type="radio" id="acepto" name="autorizacion_informacion" value="Acepto" required>
+                                <label for="informacion_acepto">Acepto</label>
+                                <input type="radio" id="rechazo" name="autorizacion_informacion" value="Rechazo" required>
+                                <label for="informacion_rechazo">Rechazo</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Botón de Vista Previa -->
+                        <div>
+                            <button type="button" id="siguienteResponsabilidad" class="btn btn-primary btn-lg">Siguiente</button>
+
+                        </div>
+                    </div>
+
+                    <div id="espacio_abierto_form" class="hidden preview-container">
+                        <h2 class="text-center">Espacio Abierto al Paciente y/o la Familia</h2>
+                        <div class="info-container">
+                            <div class="info-header">
+                                <p>“En la sección “Espacio Abierto al Paciente y/o la Familia”, queremos asegurarnos de que todas sus inquietudes sean escuchadas y atendidas.</p>
+                            </div>
+                            <div class="info-content">
+                                <p>Este espacio está dedicado exclusivamente a usted y sus seres queridos, para que puedan realizar todas las consultas que consideren necesarias, para profundizar en su comprensión de la situación médica.</p>
+                                <p>Entendemos que la entrevista médica online es un proceso bidireccional y su participación activa es crucial. Aquí puede:</p>
+                                <ul class="section-list">
+                                    <li><strong>Hacer preguntas</strong> sobre diagnósticos, tratamientos y procedimientos.</li>
+                                    <li><strong>Expresar preocupaciones</strong> o dudas sobre su condición de salud.</li>
+                                    <li><strong>Solicitar aclaraciones</strong> para entender mejor las recomendaciones médicas.</li>
+                                    <li><strong>Compartir información adicional</strong> que pueda ser relevante para su atención.</li>
+                                </ul>
+                                <p>Anímese a utilizar este espacio para comunicarse abiertamente con su equipo médico. La información que comparta nos ayudará a ofrecerle una atención más personalizada y efectiva.</p>
+                                <p><span class="required-field"></span> El símbolo indica obligatoriedad del ingreso de la información.</p>
+                            </div>
+                        </div>
+                    
+                        <!-- Expectativas -->
+                        <div class="preview-section">
+                            <h3>Expectativas</h3>
+                            <div class="form-group">
+                                <label for="expectativas" class="required-field">Le solicitamos nos informe qué expectativas tiene respecto al resultado de su consulta médica el día de hoy:</label>
+                                <input type="text" id="expectativas" name="expectativas" class="form-control" maxlength="60" placeholder="Ingrese sus expectativas..." required>
+                            </div>
+                        </div>
+                    
+                        <!-- Entendimiento de la Enfermedad -->
+                        <div class="preview-section">
+                            <h3>Entendimiento de su Enfermedad</h3>
+                            <div class="form-group">
+                                <label class="required-field">¿Entiende la enfermedad o enfermedades que sufre hoy?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="entiendo_completo" name="entendimiento_enfermedad" value="Sí, por completo" required>
+                                    <label class="form-check-label" for="entiendo_completo">Sí, por completo.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="entiendo_parcialmente" name="entendimiento_enfermedad" value="Solo parcialmente" required>
+                                    <label class="form-check-label" for="entiendo_parcialmente">Solo parcialmente.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="entiendo_algunas" name="entendimiento_enfermedad" value="Entiendo algunas de mis enfermedades, otras no" required>
+                                    <label class="form-check-label" for="entiendo_algunas">Entiendo algunas de mis enfermedades, otras no.</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="entiendo_nada" name="entendimiento_enfermedad" value="No, nada" required>
+                                    <label class="form-check-label" for="entiendo_nada">No, nada.</label>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Preguntas -->
+                        <div class="preview-section">
+                            <h3>Preguntas para la Consulta</h3>
+                            <div class="form-group">
+                                <label for="preguntas" class="required-field">¿Qué preguntas desea hacer en la consulta? Pueden ser todas las que necesite:</label>
+                                <input type="text" id="preguntas" name="preguntas" class="form-control" maxlength="60" placeholder="Escriba sus preguntas aquí..." required>
+                            </div>
+                        </div>
+                    
+                        <!-- Botón de Vista Previa -->
+                        <div class="action-buttons text-center">
+                            <button type="button" id="previewButton" class="btn btn-primary btn-lg">Vista Previa</button>
+                        </div>
+                    </div>
+                    
+                    
                         
                 </form>
                 </div>
@@ -791,9 +1146,12 @@
                 
 
                 <!-- Vista previa -->
-                <div id="previewDiv" class="hidden">
-                    <h2 class="text-center">Vista Previa</h2>
-                    <div class="text-center">
+                <div id="previewDiv" class="hidden preview-container">
+                    <h2 class="text-center">👁️ </h2>
+
+                    <!-- Información del Paciente -->
+                    <div class="preview-section">
+                        <h3>👤 Datos del Paciente</h3>
                         <p><strong>Nombre Completo:</strong> <span id="preview_nombre_completo"></span></p>
                         <p><strong>Nombre Social:</strong> <span id="preview_nombre_social"></span></p>
                         <p><strong>Edad:</strong> <span id="preview_edad"></span></p>
@@ -806,44 +1164,63 @@
                         <p><strong>Método de Contacto (email):</strong> <span id="preview_metodo_contacto_email"></span></p>
                         <p><strong>Tipo de Documento de Identidad:</strong> <span id="preview_tipo_documento_identidad"></span></p>
                         <p><strong>Número de Documento de Identidad:</strong> <span id="preview_numero_documento_identidad"></span></p>
-                        <p><strong>Es paciente?:</strong> <span id="preview_es_paciente"></span></p>
-                        <p><strong>Nombre Completo (Responsable):</strong> <span id="preview_nombre_completo_responsable"></span></p>
-                        <p><strong>Nombre Social(Responsable):</strong> <span id="preview_nombre_social_responsable"></span></p>
-                        <p><strong>Edad(Responsable):</strong> <span id="preview_edad_responsable"></span></p>
-                        <p><strong>País de Nacimiento(Responsable):</strong> <span id="preview_pais_nacimiento_responsable"></span></p>
-                        <p><strong>Nacionalidad(Responsable):</strong> <span id="preview_nacionalidad_responsable"></span></p>
-                        <p><strong>Idioma que Habla(Responsable):</strong> <span id="preview_idioma_responsable"></span></p>
-                        <p><strong>Método de Contacto Responsable (teléfono):</strong> <span id="preview_metodo_contacto_fono_responsable"></span></p>
-                        <p><strong>Método de Contacto Responsable (email):</strong> <span id="preview_metodo_contacto_email_responsable"></span></p>
-                        <p><strong>Tipo de Documento de Identidad(Responsable):</strong> <span id="preview_tipo_documento_identidad_responsable"></span></p>
-                        <p><strong>Número de Documento de Identidad(Responsable):</strong> <span id="preview_numero_documento_identidad_responsable"></span></p>
-                        <p><strong>Condiciones Cronicas:</strong> <span id="preview_enfermedades_cronicas"></span></p>
-                        <p><strong>Enfermedades Comunes:</strong> <span id="preview_enfermedades_comunes"></span></p>
-                        <p><strong>Cirugias Comunes:</strong> <span id="preview_cirugias_comunes"></span></p>
-                        <p><strong>Cirugias traumatologicas:</strong> <span id="preview_cirugias_traumatologicas"></span></p>
-                        <p><strong>Farmacos patologias cronicas:</strong> <span id="preview_farmacos_patologias_cronicas"></span></p>
-                        <p><strong>Farmacos cronicos detalles:</strong> <span id="preview_detalle_farmacos_cronicos"></span></p>
-                        <p><strong>Farmacos no cronicos:</strong> <span id="preview_farmacos_no_cronicos"></span></p>
-                        <p><strong>Farmacos no cronicos detalles:</strong> <span id="preview_detalle_farmacos_no_cronicos"></span></p>
-                        <p><strong>Alergias Farmacos:</strong> <span id="preview_alergias_farmacos"></span></p>
-                        <p><strong>Reaccion alergias farmacos:</strong> <span id="preview_detalle_alergias_farmacos"></span></p>
-                        <p><strong>Alergias Comunes:</strong> <span id="preview_alergias_comunes"></span></p>
-                        <p><strong>Reaccion alergias comunes:</strong> <span id="preview_detalle_alergias_no_farmacos"></span></p>
-                        <p><strong>Otros Antecedentes:</strong> <span id="preview_otros_antecedentes"></span></p>
-                        <p><strong>Motivo consulta:</strong> <span id="preview_motivo_consulta_texto"></span></p>
-                        <p><strong>Centro salud previo:</strong> <span id="preview_centro_salud_previo"></span></p>
-                        <p><strong>Resolvio su problema de salud :</strong> <span id="preview_resolucion_problema_salud"></span></p>
-                        <p><strong>Motivos consulta:</strong> <span id="preview_motivo_consulta"></span></p>
-                        <p><strong>Tiempo sintomas:</strong> <span id="preview_tiempo_sintomas"></span></p>
-                        <p><strong>Experimento este problema anteriormente:</strong> <span id="preview_experimentado_problema_anteriormente"></span></p>
-                        <p><strong>Frecuencia problema:</strong> <span id="preview_frecuencia_problema"></span></p>
-
                     </div>
-                    <div class="text-center">
-                        <button type="button" id="editButton" class="btn btn-secondary btn-lg">Editar</button>
-                        <button type="submit" id="submitButton" class="btn btn-success btn-lg">Enviar</button>
+
+                    <!-- Información del Responsable -->
+                    <div class="preview-section">
+                        <h3>🧑‍🤝‍🧑 Datos del Responsable</h3>
+                        <p><strong>Es paciente?:</strong> <span id="preview_es_paciente"></span></p>
+                        <p><strong>Nombre Completo:</strong> <span id="preview_nombre_completo_responsable"></span></p>
+                        <p><strong>Nombre Social:</strong> <span id="preview_nombre_social_responsable"></span></p>
+                        <p><strong>Edad:</strong> <span id="preview_edad_responsable"></span></p>
+                        <p><strong>País de Nacimiento:</strong> <span id="preview_pais_nacimiento_responsable"></span></p>
+                        <p><strong>Nacionalidad:</strong> <span id="preview_nacionalidad_responsable"></span></p>
+                        <p><strong>Idioma que Habla:</strong> <span id="preview_idioma_responsable"></span></p>
+                        <p><strong>Método de Contacto (teléfono):</strong> <span id="preview_metodo_contacto_fono_responsable"></span></p>
+                        <p><strong>Método de Contacto (email):</strong> <span id="preview_metodo_contacto_email_responsable"></span></p>
+                        <p><strong>Tipo de Documento de Identidad:</strong> <span id="preview_tipo_documento_identidad_responsable"></span></p>
+                        <p><strong>Número de Documento de Identidad:</strong> <span id="preview_numero_documento_identidad_responsable"></span></p>
+                    </div>
+
+                    <!-- Información de Antecedentes Médicos -->
+                    <div class="preview-section">
+                        <h3>🩺 Antecedentes Médicos</h3>
+                        <p><strong>Condiciones Crónicas:</strong> <span id="preview_enfermedades_cronicas"></span></p>
+                        <p><strong>Enfermedades Comunes:</strong> <span id="preview_enfermedades_comunes"></span></p>
+                        <p><strong>Cirugías Comunes:</strong> <span id="preview_cirugias_comunes"></span></p>
+                        <p><strong>Cirugías Traumatológicas:</strong> <span id="preview_cirugias_traumatologicas"></span></p>
+                        <p><strong>Fármacos Patologías Crónicas:</strong> <span id="preview_farmacos_patologias_cronicas"></span></p>
+                        <p><strong>Detalles de Fármacos Crónicos:</strong> <span id="preview_detalle_farmacos_cronicos"></span></p>
+                        <p><strong>Fármacos no Crónicos:</strong> <span id="preview_farmacos_no_cronicos"></span></p>
+                        <p><strong>Detalles de Fármacos no Crónicos:</strong> <span id="preview_detalle_farmacos_no_cronicos"></span></p>
+                        <p><strong>Alergias a Fármacos:</strong> <span id="preview_alergias_farmacos"></span></p>
+                        <p><strong>Reacción a Alergias a Fármacos:</strong> <span id="preview_detalle_alergias_farmacos"></span></p>
+                        <p><strong>Alergias Comunes:</strong> <span id="preview_alergias_comunes"></span></p>
+                        <p><strong>Reacción a Alergias Comunes:</strong> <span id="preview_detalle_alergias_no_farmacos"></span></p>
+                        <p><strong>Otros Antecedentes:</strong> <span id="preview_otros_antecedentes"></span></p>
+                    </div>
+
+                    <!-- Información del Evento -->
+                    <div class="preview-section">
+                        <h3>🏥 Datos del Evento</h3>
+                        <p><strong>Motivo de Consulta texto:</strong> <span id="preview_motivo_consulta_texto"></span></p>
+                        <p><strong>Centro de Salud Previo:</strong> <span id="preview_centro_salud_previo"></span></p>
+                        <p><strong>Resolución de Problema de Salud:</strong> <span id="preview_resolucion_problema_salud"></span></p>
+                        <p><strong>Motivo de Consulta:</strong> <span id="preview_motivo_consulta"></span></p>
+
+                        <p><strong>Tiempo de Síntomas:</strong> <span id="preview_tiempo_sintomas"></span></p>
+                        <p><strong>Problema Anteriormente Experimentado:</strong> <span id="preview_experimentado_problema_anteriormente"></span></p>
+                        <p><strong>Frecuencia del Problema:</strong> <span id="preview_frecuencia_problema"></span></p>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="text-center action-buttons">
+                        <button type="button" id="editButton" class="btn btn-secondary btn-lg">✏️ Editar</button>
+                        <button type="submit" id="submitButton" class="btn btn-success btn-lg">✅ Enviar</button>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -855,7 +1232,26 @@
     function validateForm() {
         let isValid = true;
         console.log("Validando formulario...");
+        const formGeneral=document.getElementById('general_form');
+        if (formGeneral.classList.contains('hidden') === false) {
+            const generalFields = {
+                email: "Debe ingresar su email.",
+        };
 
+        Object.keys(generalFields).forEach(fieldId => {
+            let value = document.getElementById(fieldId);
+            let errorElement = document.getElementById(`${fieldId}_error`);
+            if (value && errorElement) {
+                let fieldValue = value.value.trim();
+                if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
+                    errorElement.innerText = generalFields[fieldId];
+                    isValid = false;
+                } else {
+                    errorElement.innerText = "";
+                }
+            }
+        })
+        };
         // Validación de campos en el primer formulario
         const formPaciente = document.getElementById('paciente_form');
         if (formPaciente.classList.contains('hidden') === false) {
@@ -923,8 +1319,8 @@
     };
         const formHistorial = document.getElementById('form_historial');
         if (formHistorial.classList.contains('hidden') === false) {
-            const formFields = {
-                condiciones_cronicas: "Debe ingresar lo solicitado.",
+            const historialFields = {
+                enfermedades_cronicas: "Debe ingresar lo solicitado.",
                 enfermedades_comunes: "Debe ingresar lo solicitado.",
                 cirugias_comunes: "Debe ingresar lo solicitado.",
                 cirugias_traumatologicas: "Debe ingresar lo solicitado.",
@@ -939,13 +1335,13 @@
                 otros_antecedentes:"Debe ingresar lo solicitado"
             };
 
-                Object.keys(formFields).forEach(fieldId => {
+                Object.keys(historialFields).forEach(fieldId => {
                     let value = document.getElementById(fieldId);
                     let errorElement = document.getElementById(`${fieldId}_error`);
                     if (value && errorElement) {
                         let fieldValue = value.value.trim();
                         if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
-                            errorElement.innerText = formFields[fieldId];
+                            errorElement.innerText = historialFields[fieldId];
                             isValid = false;
                         } else {
                             errorElement.innerText = "";
@@ -955,7 +1351,7 @@
         };
         const formAntecentes = document.getElementById('form_evento');
         if (formAntecentes.classList.contains('hidden') === false) {
-            const formFields = {
+            const antecedentesFields = {
                 motivo_consulta_texto: "Debe ingresar lo solicitado.",
                 centro_salud_previo: "Debe ingresar lo solicitado.",
                 resolucion_problema_salud: "Debe ingresar lo solicitado.",
@@ -965,13 +1361,13 @@
                 frecuencia_problema: "Debe ingresar lo solicitado.",
             };
 
-                Object.keys(formFields).forEach(fieldId => {
+                Object.keys(antecedentesFields).forEach(fieldId => {
                     let value = document.getElementById(fieldId);
                     let errorElement = document.getElementById(`${fieldId}_error`);
                     if (value && errorElement) {
                         let fieldValue = value.value.trim();
                         if (fieldValue === "" || (value.tagName === "SELECT" && fieldValue === "")) {
-                            errorElement.innerText = formFields[fieldId];
+                            errorElement.innerText = antecedentesFields[fieldId];
                             isValid = false;
                         } else {
                             errorElement.innerText = "";
@@ -985,6 +1381,132 @@
         return isValid;
     
     }
+    document.querySelectorAll('input[name="enfermedades_cronicas"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_enfermedades_cronicas_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="enfermedades_comunes"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_enfermedades_comunes_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+
+    document.querySelectorAll('input[name="cirugias_comunes"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_cirugias_comunes_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+
+    document.querySelectorAll('input[name="cirugias_traumatologicas"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_cirugias_traumatologicas_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+
+    document.querySelectorAll('input[name="farmacos_patologias_cronicas"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otros_farmacos_patologias_cronicas_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+
+    document.querySelectorAll('input[name="farmacos_no_cronicos"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otros_farmacos_no_cronicos_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="alergias_farmacos"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_alergias_farmacos_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="alergias_comunes"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otras_alergias_comunes_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="centro_salud_previo"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otro_centro_salud_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="resolucion_problema_salud"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otro_resolucion_salud_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="motivo_consulta"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otros_motivo_consulta_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+    document.querySelectorAll('input[name="frecuencia_problema"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+            const otrosField = document.getElementById('otro_frecuencia_field');
+            if (this.value === 'Otros') {
+                otrosField.style.display = 'block';
+            } else {
+                otrosField.style.display = 'none';
+            }
+        });
+    });
+
+
 
     function populatePreview() {
     // Poblando la vista previa del formulario del paciente
@@ -1109,9 +1631,15 @@ function obtenerValoresSeleccionados(nombreCampo) {
     document.addEventListener('DOMContentLoaded', function() {
     const siguienteButton = document.getElementById('siguienteButton');
     const siguienteResponsable = document.getElementById('siguienteResponsable');
-    const siguienteAntecedentes=document.getElementById('siguienteAntecedentes')
+    const siguienteAntecedentes=document.getElementById('siguienteAntecedentes');
+    const siguienteGeneral=document.getElementById('siguienteButtonGeneral');
+    const siguienteEvento=document.getElementById('siguienteEvento');
+    const siguienteResponsabilidad=document.getElementById('siguienteResponsabilidad')
     const previewButton = document.getElementById('previewButton');
-    const pacienteForm =document.getElementById('paciente_form');
+    const espacioForm=document.getElementById('espacio_abierto_form');
+    const responsabilidadForm=document.getElementById('responsabilidad_form');
+    const generalForm=document.getElementById('general_form');
+    const pacienteForm =document.getElementById('paciente_form'); 
     const form_historial=document.getElementById('form_historial');
     const completoForm = document.getElementById('completoForm');
     const formResponsable = document.getElementById('form_responsable');
@@ -1121,6 +1649,37 @@ function obtenerValoresSeleccionados(nombreCampo) {
     const previewDiv = document.getElementById('previewDiv');
     const editButton = document.getElementById('editButton');
     const submitButton = document.getElementById('submitButton');
+    
+    siguienteGeneral.addEventListener('click', function() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email_error');
+        const emailValue = emailInput.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailValue)) {
+            emailError.classList.remove('hidden');
+            return false;
+        } else {
+            emailError.classList.add('hidden');
+
+             // Aquí podrías agregar el código para guardar el correo electrónico en la BBDD junto con la fecha, hora y lugar.
+            const fechaActual = new Date();
+            const tiempo = `${fechaActual.getDate()}/${fechaActual.getMonth() + 1}/${fechaActual.getFullYear()}`;
+            const hora = `${fechaActual.getHours()}:${fechaActual.getMinutes()}:${fechaActual.getSeconds()}`;
+
+            console.log("Correo electrónico guardado:", emailValue);
+            console.log("Fecha:", tiempo);
+            console.log("Hora:", hora);
+                
+        }
+            // Aquí puedes continuar con el proceso de guardar o enviar el formulario.
+        generalForm.classList.add('hidden');
+        pacienteForm.classList.remove('hidden');
+        formResponsable.classList.add('hidden');
+        form_historial.classList.add('hidden');
+        formAntecedentes.classList.add('hidden');
+        previewDiv.classList.add('hidden');
+        
+ });
 
     siguienteButton.addEventListener('click', function() {
         if (validateForm()) {
@@ -1150,6 +1709,29 @@ function obtenerValoresSeleccionados(nombreCampo) {
             
         }
     });
+    siguienteEvento.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            pacienteForm.classList.add('hidden');
+            formResponsable.classList.add('hidden');
+            form_historial.classList.add('hidden');
+            formAntecedentes.classList.add('hidden');
+            responsabilidadForm.classList.remove('hidden');
+            previewDiv.classList.add('hidden');
+        }
+    });
+    siguienteResponsabilidad.addEventListener('click', function() {
+        if (validateForm()) {
+            populatePreview();
+            pacienteForm.classList.add('hidden');
+            formResponsable.classList.add('hidden');
+            form_historial.classList.add('hidden');
+            formAntecedentes.classList.add('hidden');
+            responsabilidadForm.classList.add('hidden');
+            espacioForm.classList.remove('hidden');
+            previewDiv.classList.add('hidden');
+        }
+    });
 
 
     previewButton.addEventListener('click', function() {
@@ -1159,6 +1741,8 @@ function obtenerValoresSeleccionados(nombreCampo) {
             formAntecedentes.classList.add('hidden');
             pacienteForm.classList.add('hidden')
             formResponsable.classList.add('hidden');
+            responsabilidadForm.classList.add('hidden');
+            espacioForm.classList.add('hidden');
             previewDiv.classList.remove('hidden');
 
         }
@@ -1173,6 +1757,9 @@ function obtenerValoresSeleccionados(nombreCampo) {
         if (validateForm()) {
             document.getElementById('completoForm').submit();
         }
+        
+            
+        
     });
 
 

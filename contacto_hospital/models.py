@@ -53,6 +53,9 @@ class Responsable(models.Model):
 
 
 class Paciente(models.Model):
+    email = models.EmailField(max_length=254, null=False,verbose_name="Correo Electrónico", help_text="Ingrese su correo electrónico")
+    fecha_envio = models.DateField(auto_now_add=True, verbose_name="Fecha de Envío")
+    hora_envio = models.TimeField(auto_now_add=True, verbose_name="Hora de Envío")
     nombre_completo = models.CharField(max_length=35, blank=True, verbose_name="Nombre Completo")
     nombre_social = models.CharField(max_length=35, blank=True, verbose_name="Nombre Social")
     edad = models.PositiveIntegerField(blank=True, null=True, verbose_name="Edad")
@@ -829,7 +832,36 @@ class Paciente(models.Model):
         if self.frecuencia_problema == self.OTROS and not self.frecuencia_otros:
             raise ValidationError("Debe especificar la frecuencia si selecciona 'Otros'.")
         super().save(*args, **kwargs)
+    
 
+    ACEPTO='Acepto'
+    RECHAZO='Rechazo'
+    OPCIONES_CHOICES = [
+        (ACEPTO ,'Acepto'),
+        (RECHAZO, 'Rechazo'),
+    ]
+     # Consentimiento para Descargo de Responsabilidad Legal
+    descargo_responsabilidad = models.CharField(max_length=7,choices=OPCIONES_CHOICES)
+
+    # Consentimiento para Procedimientos Diagnósticos y Tratamientos
+    consentimiento_procedimientos = models.CharField(max_length=7,choices=OPCIONES_CHOICES)
+
+    # Autorización para el Uso de Información Clínica
+    autorizacion_informacion = models.CharField(max_length=7,choices=OPCIONES_CHOICES)
+
+    expectativas = models.CharField(max_length=60, blank=False, null=True)
+    preguntas = models.CharField(max_length=60, blank=False, null=True)
+
+    # Opciones para comprensión de la enfermedad
+    OPCIONES_ENTENDIMIENTO = [
+        ('Sí, por completo', 'Sí, por completo'),
+        ('Solo parcialmente', 'Solo parcialmente'),
+        ('Entiendo algunas de mis enfermedades, otras no', 'Entiendo algunas de mis enfermedades, otras no'),
+        ('No, nada', 'No, nada'),
+    ]
+
+    # Comprensión de la enfermedad
+    entendimiento_enfermedad = models.CharField(max_length=60, choices=OPCIONES_ENTENDIMIENTO, blank=False, null=True)
 
     class Meta:
         verbose_name = "Paciente"

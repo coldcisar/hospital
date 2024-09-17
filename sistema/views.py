@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 
 def paginaIndex(request):
@@ -18,6 +19,7 @@ def paginaAgregarP(request):
 def agregarP(request):
     if request.method == 'POST':
         # Datos del paciente
+        email=request.POST.get('email')
         nombre_completo = request.POST.get('nombre_completo')
         print(f"Nombre completo: {nombre_completo}")
         nombre_social = request.POST.get('nombre_social', '')
@@ -62,7 +64,13 @@ def agregarP(request):
         experimentado_problema_anteriormente = request.POST.get('experimentado_problema_anteriormente',[])
         frecuencia_problema = request.POST.get('frecuencia_problema',[])
         frecuencia_otros = request.POST.get('frecuencia_otros', '')
-        motivo_consulta_texto=request.POST.get('motivo_consulta_texto')
+        motivo_consulta_texto=request.POST.get('motivo_consulta_texto'),
+        descargo_responsabilidad=request.POST.get('descargo_responsabilidad',[])
+        consentimiento_procedimientos=request.POST.get('consentimiento_procedimientos',[])
+        autorizacion_informacion=request.POST.get('autorizacion_informacion',[])
+        expectativas=request.POST.get('expectativas')
+        preguntas=request.POST.get('preguntas')
+        entendimiento_enfermedad=request.POST.get('entendimiento_enfermedad',[])
 
         
         
@@ -113,6 +121,9 @@ def agregarP(request):
         # Crear paciente y asociar responsable
         try:
             paciente = Paciente.objects.create(
+                email=email,
+                fecha_envio=timezone.now().date(),
+                hora_envio=timezone.now().time(),
                 nombre_completo=nombre_completo,
                 nombre_social=nombre_social,
                 edad=edad,
@@ -157,7 +168,13 @@ def agregarP(request):
                 tiempo_sintomas=tiempo_sintomas,
                 experimentado_problema_anteriormente=experimentado_problema_anteriormente,
                 frecuencia_problema=frecuencia_problema,
-                frecuencia_otros=frecuencia_otros
+                frecuencia_otros=frecuencia_otros,
+                descargo_responsabilidad=descargo_responsabilidad,
+                consentimiento_procedimientos=consentimiento_procedimientos,
+                autorizacion_informacion=autorizacion_informacion,
+                expectativas=expectativas,
+                preguntas=preguntas,
+                entendimiento_enfermedad=entendimiento_enfermedad,
 
 
 
